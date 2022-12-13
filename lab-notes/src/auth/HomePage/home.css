@@ -1,0 +1,42 @@
+@media (min-width: 700px) and (orientation: landscape) {
+    .home {
+        display: grid;
+        grid-template-columns: 35vw 65vw 30vw;
+        height: 125vh;
+    }
+
+    .notes,
+    .noteAndSearch,
+    .exit {
+        display: flex;
+        flex-direction: column;
+        padding: 5vh;
+    }
+
+    .notes button {
+        background-color: #AF3E25;
+        color: rgb(255, 255, 255);
+        font-size: 1.2em;
+        padding: 2vw;
+        border-radius: 2vh;
+        margin-bottom: 5vh;
+    }
+
+    .allNotes {
+        background-color: rgb(145, 145, 145);
+        height: 65vh;
+    }
+
+    .noteAndSearch input {
+        padding: 2.5vh;
+        font-size: 1.5em;
+        border-radius: 2vh;
+    }
+    .exit{
+        align-content: center;
+    }
+
+    .exit .logo img{
+        width:12vw;
+    }
+}
