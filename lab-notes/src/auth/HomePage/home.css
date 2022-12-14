@@ -1,26 +1,39 @@
 @media (min-width: 700px) and (orientation: landscape) {
     .home {
         display: grid;
-        grid-template-columns: 35vw 65vw 30vw;
-        height: 129vh;
+        grid-template-columns: 75vw 20vw;
+        height: 95vh;
     }
 
-    .notes,
-    .noteAndSearch,
     .exit {
         display: flex;
         flex-direction: column;
-        padding: 5vh;
+        margin: -1vw;
     }
 
-    .notes button,
+    .buttonAndSearch {
+        display: flex;
+        flex-direction: row;
+        width: 73vw;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2vh;
+    }
+
+    .buttonAndSearch input {
+        width: 45vw;
+        font-size: 1.3em;
+        padding: 1.8vw;
+        border-radius: 2vh;
+    }
+
+    .searchAndCreateNote button,
     .exit button {
         background-color: #AF3E25;
         color: rgb(255, 255, 255);
-        font-size: 1.8em;
+        font-size: 1.2em;
         padding: 1.5vw;
         border-radius: 2vh;
-        margin-bottom: 5vh;
     }
 
     .allNotes,
@@ -51,21 +64,28 @@
 
     .exit button {
         margin: 0;
-        width: 24vw;
-
+        width: 17vw;
     }
 
     .rauuuul {
-        width: 10vw;
+        width: 12vw;
         position: absolute;
-        top: 10.4vw;
-        left: 9vw;
+        top: 7vw;
+        left: 3.2vw;
     }
 
     .exitCat {
         position: absolute;
-        bottom: 5.6vw;
-        width: 14vw;
+        bottom: 2.1vw;
+        width: 12vw;
         right: 1vw;
+    }
+
+    .noNotes {
+        position: absolute;
+    }
+
+    .searchAndCreateNote button {
+        width: 20vw;
     }
 }

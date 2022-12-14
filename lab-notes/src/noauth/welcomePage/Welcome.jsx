@@ -1,19 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { Logo } from '../../elements/Logo'
 import './welcome.css'
-import { registerWithGoogle, registerGitHub } from '../../lib/provaiders.js'
+import { registerWithGoogle, registerGitHub} from '../../lib/provaiders.js'
+import {user, setUser} from '../../App'
 
-export const Welcome = (props) => {
-    // const { setUser } = props;
+export const Welcome = () => {
     const navigate = useNavigate();
-
-    const google = async() => {
-        const userGoogle= await registerWithGoogle()
-        // setUser(true)
-        // console.log(registerWithGoogle())
-      
-        // navigate('/home')
-    }
 
     const gitHub = () => {
         registerGitHub()
@@ -27,7 +19,7 @@ export const Welcome = (props) => {
                 <img className='catDescription' src="https://user-images.githubusercontent.com/101679628/207448832-9fda47e3-caa4-4c85-a6f1-8844e9ce5e9c.png" alt="Descripcion de la app por un gatito" />
             </section>
             <section className='rigth'>
-                <button className='googleBtn' onClick={() => google()}>Continua con Google</button>
+                <button className='googleBtn' onClick={() =>  registerWithGoogle()}>Continua con Google</button>
                 <button className='gitHubBtn' onClick={() => gitHub()}>Continua con GitHub</button>
             </section>
         </div>

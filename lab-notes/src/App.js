@@ -1,26 +1,20 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { BrowserRouter, Route, Routes, redirect } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Welcome } from './noauth/welcomePage/Welcome';
 import { NotFound } from './noauth/NoFoundPage/NotFound';
 import { Home } from './auth/Home';
 import { loginStateUser } from './lib/provaiders.js'
 
-function App() {
-  // const [user, setUser] = useState(null)
- const user= sessionStorage.uid
-//  window.localStorage.getItem('user')
-//JSON.parse(obj)
 
-  loginStateUser();
-  // return (
-  //   <BrowserRouter>
-  //     <Routes>
-  //       <Route path='/' element={<Welcome setUser={setUser} />} />
-  //       <Route path='*' element={<NotFound />} />
-  //       <Route path='/home' element={<Home />} />
-  //     </Routes>
-  //   </BrowserRouter>
-  // );
+function App() {
+  const [user, setUser] = useState(null)
+
+useEffect(()=>{
+  loginStateUser(setUser);
+}, [])
+ //vista de cargando...
+  // setUser(uid)
+// console.log(objectUser)
   return (
     <BrowserRouter>
       <div>
@@ -28,17 +22,18 @@ function App() {
           <Routes>
             <Route path='/' element={<Welcome />} />
             <Route path='*' element={<NotFound />} />
+            {/* <Route path='/home' element={<Home />} /> */}
           </Routes>
           :
           <Routes>
-             <Route path='/home' element={<Home />} />
+            {/* <redirect to='/home' element={<Home />} /> */}
+            <Route path='/' element={<Home user={user}/>} />
+            <Route path='/test' element={<h1>PRUEBA</h1>} />
           </Routes>
         }
       </div>
-    </ BrowserRouter>
+    </ BrowserRouter >
   );
 }
-
-
 
 export default App;
