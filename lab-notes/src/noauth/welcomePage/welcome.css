@@ -6,6 +6,7 @@
     .welcome {
         display: flex;
         height: 95vh;
+        margin: -1vh;
     }
 
     .left {
@@ -18,7 +19,7 @@
 
     .catDescription {
         position: absolute;
-        bottom: -2.4vw;
+        bottom: -3.15vw;
         width: 38vw;
     }
 
@@ -34,7 +35,7 @@
         flex-direction: column;
     }
 
-    .googleBtn {
+    .googleBtn, .gitHubBtn {
         background-color: rgb(255, 255, 255);
         padding: 3vh;
         padding-left: 7vw;
@@ -50,13 +51,6 @@
     }
 
     .gitHubBtn{
-        background-color: rgb(255, 255, 255);
-        padding: 3vh;
-        padding-left: 7vw;
-        border-radius: 2vh;
-        font-size: 1.5em;
-        cursor: pointer;
-        width: 30vw;
-        margin: 3vw;
+        background-image: url('https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png');
     }
 }

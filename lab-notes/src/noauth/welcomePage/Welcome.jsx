@@ -4,13 +4,15 @@ import './welcome.css'
 import { registerWithGoogle, registerGitHub } from '../../lib/provaiders.js'
 
 export const Welcome = (props) => {
-    const { setUser } = props;
+    // const { setUser } = props;
     const navigate = useNavigate();
 
-    const google = () => {
-        registerWithGoogle()
-        setUser(true)
-        navigate('/home')
+    const google = async() => {
+        const userGoogle= await registerWithGoogle()
+        // setUser(true)
+        // console.log(registerWithGoogle())
+      
+        // navigate('/home')
     }
 
     const gitHub = () => {

@@ -2,7 +2,7 @@
     .home {
         display: grid;
         grid-template-columns: 35vw 65vw 30vw;
-        height: 125vh;
+        height: 129vh;
     }
 
     .notes,
@@ -13,30 +13,59 @@
         padding: 5vh;
     }
 
-    .notes button {
+    .notes button,
+    .exit button {
         background-color: #AF3E25;
         color: rgb(255, 255, 255);
-        font-size: 1.2em;
-        padding: 2vw;
+        font-size: 1.8em;
+        padding: 1.5vw;
         border-radius: 2vh;
         margin-bottom: 5vh;
     }
 
-    .allNotes {
+    .allNotes,
+    .showNote {
         background-color: rgb(145, 145, 145);
-        height: 65vh;
+        height: 85vh;
+        border-radius: 1vh;
     }
 
     .noteAndSearch input {
         padding: 2.5vh;
         font-size: 1.5em;
         border-radius: 2vh;
-    }
-    .exit{
-        align-content: center;
+        margin: 3vh;
     }
 
-    .exit .logo img{
-        width:11vw;
+    .exit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .exit .logo img {
+        width: 11vw;
+    }
+
+    .exit button {
+        margin: 0;
+        width: 24vw;
+
+    }
+
+    .rauuuul {
+        width: 10vw;
+        position: absolute;
+        top: 10.4vw;
+        left: 9vw;
+    }
+
+    .exitCat {
+        position: absolute;
+        bottom: 5.6vw;
+        width: 14vw;
+        right: 1vw;
     }
 }
