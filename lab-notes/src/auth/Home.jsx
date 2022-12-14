@@ -1,23 +1,26 @@
-import { Logo } from '../elements/Logo'
+import { Exit } from './Exit'
 import './HomePage/home.css'
+import { NoNotes } from './NoNotes';
 
-export const Home =()=>{
-    return(
+
+export const Home = ({user}) => {
+//dos funciones crear nota y otra de usuario
+console.log(user);
+    return (
         <div className="home">
-            <section className="notes">
+            <section className="searchAndCreateNote">
+                <div className="buttonAndSearch">
                 <button>CREAR NOTA +</button>
-                <div className='allNotes'></div>
+                <input className='search' type="text" />
+                </div>
+                <section className="notes">
+               {/* <div className='allNotes'></div> */}
+                {/* <div className='showNote'></div> */}
             </section>
-            <section className="noteAndSearch">
-                <input clasName='search' type="text" />
-                <div className='showNote'></div>
-                </section>
-            <section  className="exit">
-                <Logo />
-                <img className='rauuuul' src="https://user-images.githubusercontent.com/101679628/207461293-5a998ad6-88f5-49f7-a2e3-3f8bededc9a5.png" alt="rauuul" />
-                <img clasName='exitCat' src="https://user-images.githubusercontent.com/101679628/207461215-199698cd-95e5-4a78-90a5-f2e592e64295.png" alt="exitCat" />
-                <button>SALIR</button>
-                </section>
+            </section>
+            
+           <Exit />
+           {/* <NoNotes /> */}
         </div>
     )
 }
