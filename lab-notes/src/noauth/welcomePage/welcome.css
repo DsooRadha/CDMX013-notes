@@ -31,9 +31,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
     }
 
-    .rigth button {
+    .googleBtn {
         background-color: rgb(255, 255, 255);
         padding: 3vh;
         padding-left: 7vw;
@@ -45,5 +46,17 @@
         font-size: 1.5em;
         cursor: pointer;
         width: 30vw;
+        margin: 3vw;
+    }
+
+    .gitHubBtn{
+        background-color: rgb(255, 255, 255);
+        padding: 3vh;
+        padding-left: 7vw;
+        border-radius: 2vh;
+        font-size: 1.5em;
+        cursor: pointer;
+        width: 30vw;
+        margin: 3vw;
     }
 }

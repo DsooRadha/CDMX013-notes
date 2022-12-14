@@ -9,7 +9,7 @@ export const Home =()=>{
                 <div className='allNotes'></div>
             </section>
             <section className="noteAndSearch">
-                <input clasName='search' type="text" />
+                <input className='search' type="text" />
                 <div className='showNote'></div>
                 </section>
             <section  className="exit">
