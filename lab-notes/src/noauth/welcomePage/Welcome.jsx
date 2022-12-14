@@ -9,20 +9,15 @@ export const Welcome = (props) => {
 
     const google = () => {
         registerWithGoogle()
-            .then(user => setUser(user))
-            .catch(error => console.log(error))
         setUser(true)
         navigate('/home')
     }
 
     const gitHub = () => {
-        registerGitHub().then((res) => {
-            const user = res.user;
-            // setUser(user.uid)
-        })
+        registerGitHub()
         navigate('/home')
     }
-console.log(setUser);
+
     return (
         <div className='welcome'>
             <section className='left'>

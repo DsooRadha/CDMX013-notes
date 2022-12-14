@@ -9,42 +9,42 @@ const auth = getAuth();
 
 export const registerWithGoogle = () => {
     signInWithPopup(auth, provider)
-        // .then((result) => {
-        //     const credential = GoogleAuthProvider.credentialFromResult(result);
-        //     const token = credential.accessToken;
-        //     // const user = result.user;
-        //     // console.log(':::::::::::::::USER.UID:::::::', user.uid)
-        //     console.log(':::::::::::::::TOKEN', token)
+    // .then((result) => {
+    //     const credential = GoogleAuthProvider.credentialFromResult(result);
+    //     const token = credential.accessToken;
+    //     // const user = result.user;
+    //     // console.log(':::::::::::::::USER.UID:::::::', user.uid)
+    //     console.log(':::::::::::::::TOKEN', token)
 
-        // }).catch((error) => {
-        //     //     const errorCode = error.code;
-        //     //     const errorMessage = error.message;
-        //     //     const email = error.customData.email;
-        //     //     const credential = GoogleAuthProvider.credentialFromError(error);
-        //     //     console.log(':::::::::::::::errorCode:::::::', errorCode)
-        //     //     console.log(':::::::::::::::errorMessage', errorMessage)
-        //     //     console.log(':::::email', email)
-        //     //     console.log(':::::credential', credential)
-        //     console.log(error);
-        // });
+    // }).catch((error) => {
+    //     //     const errorCode = error.code;
+    //     //     const errorMessage = error.message;
+    //     //     const email = error.customData.email;
+    //     //     const credential = GoogleAuthProvider.credentialFromError(error);
+    //     //     console.log(':::::::::::::::errorCode:::::::', errorCode)
+    //     //     console.log(':::::::::::::::errorMessage', errorMessage)
+    //     //     console.log(':::::email', email)
+    //     //     console.log(':::::credential', credential)
+    //     console.log(error);
+    // });
 
 }
 
-const authGitHub = getAuth();
 
 export const registerGitHub = () => {
-    signInWithPopup(authGitHub, providerGitHub)
-    .then((result) => {
-        const credential = GithubAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
+    signInWithPopup(auth, providerGitHub)
+        .then((result) => {
+            const credential = GithubAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const user = result.user;
+console.log(token, user, 'ACA')
+        }).catch((error) => {
 
-    }).catch((error) => {
-       
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GithubAuthProvider.credentialFromError(error);
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            const credential = GithubAuthProvider.credentialFromError(error);
+            console.log(errorCode, errorMessage, email, credential, 'ERROR')
 
-})
+        })
 };
