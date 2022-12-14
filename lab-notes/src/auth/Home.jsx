@@ -20,7 +20,7 @@ console.log(user);
             </section>
             
            <Exit />
-           {/* <NoNotes /> */}
+           <NoNotes />
         </div>
     )
 }
