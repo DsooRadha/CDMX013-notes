@@ -1,0 +1,31 @@
+.menuButtonsNote, .newNoteArea{
+    display: flex;
+    flex-direction: row;
+}
+.newNote{
+    width: 43vw;
+    border-radius: 2vh;
+    padding: 4vh;
+    font-size: 1.5em;
+    height: 66vh;
+    background-color: #D9D9D9;
+    margin-right: 1vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.contentNote{
+    width: 51vw;
+    margin: 2.5vh 7vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menuButtonsNote{
+    width:20vw;
+    position: absolute;
+    bottom:5vw;
+    left: 32.5vw;
+}
+.menuButtonsNote button{
+    margin:0 2vh;
+   
+}
