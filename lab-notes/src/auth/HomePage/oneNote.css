@@ -26,6 +26,24 @@
     left: 32.5vw;
 }
 .menuButtonsNote button{
-    margin:0 2vh;
-   
+    margin:0 2vh;  
+}
+
+.tagLabel{
+    position: absolute;
+    width:12vw;
+    top:22vh;
+    right: 13vw;
+}
+.labelCat{
+    position: absolute;
+    width:19vw;
+    top:24.36vh;
+    right: 4vw;
+    background: none;
+    border: none;
+    font-size: 1em;
+    padding: 1vh;
+    color: aliceblue;
+    z-index: 1;
 }
