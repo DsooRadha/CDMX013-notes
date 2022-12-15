@@ -13,8 +13,7 @@ useEffect(()=>{
   loginStateUser(setUser);
 }, [])
  //vista de cargando...
-  // setUser(uid)
-// console.log(objectUser)
+  
   return (
     <BrowserRouter>
       <div>
@@ -22,11 +21,9 @@ useEffect(()=>{
           <Routes>
             <Route path='/' element={<Welcome />} />
             <Route path='*' element={<NotFound />} />
-            {/* <Route path='/home' element={<Home />} /> */}
           </Routes>
           :
           <Routes>
-            {/* <redirect to='/home' element={<Home />} /> */}
             <Route path='/' element={<Home user={user}/>} />
             <Route path='/test' element={<h1>PRUEBA</h1>} />
           </Routes>

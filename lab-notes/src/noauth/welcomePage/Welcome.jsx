@@ -1,16 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { Logo } from '../../elements/Logo'
 import './welcome.css'
 import { registerWithGoogle, registerGitHub} from '../../lib/provaiders.js'
-import {user, setUser} from '../../App'
 
 export const Welcome = () => {
-    const navigate = useNavigate();
-
-    const gitHub = () => {
-        registerGitHub()
-        navigate('/home')
-    }
 
     return (
         <div className='welcome'>
@@ -20,7 +12,7 @@ export const Welcome = () => {
             </section>
             <section className='rigth'>
                 <button className='googleBtn' onClick={() =>  registerWithGoogle()}>Continua con Google</button>
-                <button className='gitHubBtn' onClick={() => gitHub()}>Continua con GitHub</button>
+                <button className='gitHubBtn' onClick={() => registerGitHub()}>Continua con GitHub</button>
             </section>
         </div>
     )

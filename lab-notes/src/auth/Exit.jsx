@@ -1,6 +1,6 @@
 import { Logo } from '../elements/Logo';
 import { singOutSession } from '../lib/provaiders.js';
-import './HomePage/home.css'
+import './HomePage/exit.css'
 
 export const Exit=()=>{
     return(

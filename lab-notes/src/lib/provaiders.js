@@ -11,7 +11,7 @@ const auth = getAuth(app);
 export const registerWithGoogle = () => signInWithPopup(auth, provider);
 
 export const registerGitHub = () => signInWithPopup(auth, providerGitHub);
-export let uid = ''
+
 export const loginStateUser = (setUser) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
