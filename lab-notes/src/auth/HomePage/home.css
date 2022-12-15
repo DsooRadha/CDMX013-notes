@@ -1,14 +1,14 @@
 @media (min-width: 700px) and (orientation: landscape) {
     .home {
         display: grid;
-        grid-template-columns: 75vw 20vw;
+        grid-template-columns: 78vw 20vw;
         height: 95vh;
     }
 
     .buttonAndSearch {
         display: flex;
         flex-direction: row;
-        width: 73vw;
+        width: 75vw;
         justify-content: space-between;
         align-items: center;
         padding: 2vh;
@@ -16,9 +16,10 @@
 
     .buttonAndSearch input {
         width: 45vw;
-        font-size: 1.3em;
-        padding: 1.8vw;
+        font-size: 1em;
+        padding: 1.5vw;
         border-radius: 2vh;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
     .searchAndCreateNote button,
@@ -39,13 +40,6 @@
         margin: 2vh;
     }
 
-    .noteAndSearch input {
-        padding: 2.5vh;
-        font-size: 1.5em;
-        border-radius: 2vh;
-        margin: 3vh;
-    }
-
     .noNotes {
         position: absolute;
     }
@@ -60,13 +54,4 @@
         justify-content: space-between;
     }
 
-    .newNote {
-        width: 42vw;
-        padding: 3vw;
-        font-size: 1.5em;
-        margin: 2vh;
-        border-radius: 1vh;
-        background-color: #D9D9D9;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
 }
