@@ -1,0 +1,47 @@
+@media (min-width: 700px) and (orientation: landscape) {
+    .allNotes {
+        height: 75vh;
+        border-radius: 1vh;
+        width: 24vw;
+        margin: 0 2vh;
+    }
+
+    .petitNotes {
+        background-color: #696969;
+        display: flex;
+        flex-direction: row;
+        padding: 1vw;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: rgb(249, 249, 249);
+        align-items: center;
+        height: 6vh;
+        font-size: 1.2em;
+    }
+
+    .textDescription {
+        width: 20vw;
+    }
+
+    .labelNotes {
+        width: 9vw;
+        position: relative;
+     
+    }
+
+    .petitTagLabel {
+        width: 11vh;
+        height: 5vh;
+        position: absolute;
+       top: -2.5vh;
+    }
+
+    .labelNotes p {
+        position: absolute;
+        z-index: 1;
+        top: -2.1vh;
+        font-size: 0.48em;
+        left:  2.3vh;
+        width: 6vw;
+        text-align: center;
+    }
+}

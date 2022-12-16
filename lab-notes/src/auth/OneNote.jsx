@@ -1,37 +1,71 @@
 import { useState } from 'react'
+import { GetNotes } from './GetNotes';
 import './HomePage/oneNote.css'
+import { Tag } from './Tag';
 
 export const OneNote = ({ user }) => {
+
+    const dateNote = new Date();
     const [note, setNote] = useState({
-        id: user.uid,
-        date: '',
+        uid: user.uid,
+        date: dateNote,
         label: '',
         description: '',
         image: '',
     });
 
+    const [showTag, setTag] = useState(false)
+
     const handleTextTareaChange = (e) => {
         const { name, value } = e.target
         setNote((prevState) => ({ ...prevState, [name]: value }))
     };
-    console.log(note)
+
+    const showLabel = () => {
+        setTag(true)
+    };
+
+    const addNotes = async () => {
+        if (note.description === '') {
+            console.log('esta nota esta vacia')
+        } else {
+
+            const config = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(note)
+            };
+            await fetch('https://639b6461d5141501975434d1.mockapi.io/notes', config);
+            setTag(false)
+            cancelNote()
+            // getAllNotes()
+        }
+    };
+
+    const cancelNote = () => {
+        setNote({
+            uid: user.uid,
+            date: dateNote,
+            label: '',
+            description: '',
+            image: '',
+        });
+    }
+
     return (
         <section className="newNoteArea">
-            <div className='allNotes'></div>
+            <GetNotes user={user} />
             <div className='contentNote'>
-                <img className='tagLabel' src="https://user-images.githubusercontent.com/101679628/207916790-28de992c-b3f1-415f-b76d-7c054967dac7.png" alt="tagLabel" />
-                <select name='label' value={note.label} onChange={handleTextTareaChange} className='labelCat'>
-                    <option ></option>
-                    <option >IMPORTANTE</option>
-                    <option >NO TAN IMPORTANTE</option>
-                    <option>ALGÚN DÍA LO OCUPO</option>
-                    <option >COMPRAS</option>
-                </select>
-                <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                     (=^･ｪ･^=)"></textarea>
+                {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
+                <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
                 <section className="menuButtonsNote">
-                    <button>GUARDAR</button>
-                    <button>ELIMINAR</button>
-                    <button>IMAGEN</button>
+                    <button onClick={() => addNotes()}>GUARDAR</button>
+                    <button onClick={() => showLabel()}>ETIQUETA</button>
+                    <button onClick={() => cancelNote()}>BORRAR</button>
+
                 </section>
             </div>
         </section>

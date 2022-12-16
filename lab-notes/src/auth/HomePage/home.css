@@ -32,20 +32,14 @@
         border: none;
     }
 
-    .allNotes {
-        background-color: rgb(145, 145, 145);
-        height: 75vh;
-        border-radius: 1vh;
-        width: 20vw;
-        margin: 2vh;
-    }
+  
 
     .noNotes {
         position: absolute;
     }
 
     .searchAndCreateNote button {
-        width: 20vw;
+        width: 24vw;
     }
 
     .notes {
