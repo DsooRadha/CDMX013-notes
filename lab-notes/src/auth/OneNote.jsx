@@ -3,7 +3,7 @@ import { GetNotes } from './GetNotes';
 import './HomePage/oneNote.css'
 import { Tag } from './Tag';
 
-export const OneNote = ({ user, setStateError }) => {
+export const OneNote = ({ user, setStateError, setLoading }) => {
 
     const dateNote = new Date();
     const [note, setNote] = useState({
@@ -13,7 +13,7 @@ export const OneNote = ({ user, setStateError }) => {
         description: '',
         image: '',
     });
-
+    const [getFlag, setGetFlag] = useState(false)
     const [showTag, setTag] = useState(false)
 
     const handleTextTareaChange = (e) => {
@@ -44,6 +44,7 @@ export const OneNote = ({ user, setStateError }) => {
             setStateError(false)
             cancelNote()
             // getAllNotes()
+            setGetFlag(!getFlag)
         }
     };
 
@@ -59,7 +60,7 @@ export const OneNote = ({ user, setStateError }) => {
 
     return (
         <section className="newNoteArea">
-            <GetNotes user={user} />
+            <GetNotes user={user} getFlag={getFlag} setLoading={setLoading} />
             <div className='contentNote'>
                 {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
                 <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>

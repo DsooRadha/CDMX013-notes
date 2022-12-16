@@ -11,8 +11,9 @@ const SmallTag = ({ item }) => {
     )
 };
 
-export const GetNotes = ({ user }) => {
+export const GetNotes = ({ user, getFlag,    setLoading }) => {
     const [allNotes, setAllNotes] = useState([]);
+
     const getAllNotes = async () => {
         const config = {
             method: "GET",
@@ -21,11 +22,13 @@ export const GetNotes = ({ user }) => {
         const response = await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes?uid=${user.uid}`, config)
         const allNotes = await response.json();
         setAllNotes(allNotes)
+        setLoading(false)
     };
 
     useEffect(() => {
+        setLoading(true)
         getAllNotes()
-    }, []);
+    }, [getFlag]);
 
     return (
         <section className='allNotes'>
