@@ -1,0 +1,25 @@
+.loading {
+    display: flex;
+    flex-direction: row;
+}
+
+.agryCat {
+    width: 90vw;
+    margin-top: 45vh;
+}
+
+.loadingLogo .logo {
+    margin-right: 5vw;
+}
+
+.loadingLogo .logo .imgLogo {
+    width: 60vw;
+    position: relative;
+}
+
+.loadingGif {
+    position: absolute;
+    width: 30vw;
+    top: 43vw;
+    right: -35vw;
+}
