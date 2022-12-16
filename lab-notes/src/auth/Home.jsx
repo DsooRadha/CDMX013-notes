@@ -7,10 +7,11 @@ import './HomePage/home.css';
 export const Home = ({ user }) => {
     const [showNewNote, setShowNewNote] = useState(false)
     const [noNotes, setNoNotes] = useState(true)
-    // AGREGAR Iconos de libreria imagenes, add, search
-    //dos funciones crear nota y otra de usuario
+    const [stateError, setStateError] = useState(false)
 
-    console.log(user);
+    // AGREGAR Iconos de libreria imagenes, add, search
+
+    console.log(user.uid);
 
     const newNote = () => {
         setNoNotes(false)
@@ -25,12 +26,13 @@ export const Home = ({ user }) => {
                     <input className='search' type="text" />
                 </div>
                 <section className="notes">
-                    {showNewNote && <OneNote />}
+                    {showNewNote && <OneNote user={user} setStateError={setStateError} />}
                 </section>
             </section>
-
             {noNotes && <NoNotes />}
-            <Exit />
+            <Exit user={user}
+             stateError={stateError}
+            />
 
         </div>
     )

@@ -2,19 +2,23 @@
     display: flex;
     flex-direction: row;
 }
+
+.newNoteArea{
+    justify-content: space-between;
+    margin-top: 2vh;
+}
 .newNote{
-    width: 43vw;
+    width: 42.5vw;
     border-radius: 2vh;
     padding: 4vh;
     font-size: 1.5em;
-    height: 66vh;
+    height: 69vh;
     background-color: #D9D9D9;
     margin-right: 1vh;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .contentNote{
     width: 51vw;
-    margin: 2.5vh 7vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,10 +26,28 @@
 .menuButtonsNote{
     width:20vw;
     position: absolute;
-    bottom:5vw;
+    bottom:3vw;
     left: 32.5vw;
 }
 .menuButtonsNote button{
-    margin:0 2vh;
-   
+    margin:0 2vh;  
+}
+
+.tagLabel{
+    position: absolute;
+    width:12vw;
+    top:22vh;
+    right: 13vw;
+}
+.labelCat{
+    position: absolute;
+    width:15vw;
+    top:24.36vh;
+    right: 7vw;
+    background: none;
+    border: none;
+    font-size: 1em;
+    padding: 1vh;
+    color: aliceblue;
+    z-index: 1;
 }
