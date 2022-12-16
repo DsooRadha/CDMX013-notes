@@ -1,9 +1,10 @@
 @media (min-width: 700px) and (orientation: landscape) {
     .allNotes {
-        height: 75vh;
+        height: 81vh;
         border-radius: 1vh;
         width: 24vw;
         margin: 0 2vh;
+        overflow: scroll;
     }
 
     .petitNotes {
@@ -15,7 +16,7 @@
         color: rgb(249, 249, 249);
         align-items: center;
         height: 6vh;
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
 
     .textDescription {
@@ -25,7 +26,6 @@
     .labelNotes {
         width: 9vw;
         position: relative;
-     
     }
 
     .petitTagLabel {

@@ -3,7 +3,7 @@ import { GetNotes } from './GetNotes';
 import './HomePage/oneNote.css'
 import { Tag } from './Tag';
 
-export const OneNote = ({ user }) => {
+export const OneNote = ({ user, setStateError }) => {
 
     const dateNote = new Date();
     const [note, setNote] = useState({
@@ -28,6 +28,7 @@ export const OneNote = ({ user }) => {
     const addNotes = async () => {
         if (note.description === '') {
             console.log('esta nota esta vacia')
+            setStateError(true)
         } else {
 
             const config = {
@@ -40,6 +41,7 @@ export const OneNote = ({ user }) => {
             };
             await fetch('https://639b6461d5141501975434d1.mockapi.io/notes', config);
             setTag(false)
+            setStateError(false)
             cancelNote()
             // getAllNotes()
         }
