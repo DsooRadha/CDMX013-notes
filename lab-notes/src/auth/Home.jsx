@@ -19,7 +19,7 @@ export const Home = ({ user, setLoading }) => {
         <div className="home">
             <section className="searchAndCreateNote">
                 <div className="buttonAndSearch">
-                    <button onClick={() => { newNote() }}>CREAR NOTA   +</button>
+                    <button className='createNote' onClick={() => { newNote() }}>CREAR NOTA   +</button>
                     <input className='search' type="text" />
                 </div>
                 <section className="notes">

@@ -1,9 +1,11 @@
 .loading {
     display: flex;
-    flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
 }
 
-.agryCat {
+/* .agryCat {
     width: 90vw;
     margin-top: 45vh;
 }
@@ -15,11 +17,8 @@
 .loadingLogo .logo .imgLogo {
     width: 60vw;
     position: relative;
-}
+} */
 
 .loadingGif {
-    position: absolute;
-    width: 30vw;
-    top: 43vw;
-    right: -35vw;
+width:30vw;
 }

@@ -22,8 +22,9 @@
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
-    .searchAndCreateNote button,
-    .exit button {
+    .createNote,
+    .exit button,
+    .menuButtonsNote button {
         background-color: #AF3E25;
         color: rgb(255, 255, 255);
         font-size: 1.2em;

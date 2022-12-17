@@ -15,10 +15,17 @@ export const OneNote = ({ user, setStateError, setLoading }) => {
     });
     const [getFlag, setGetFlag] = useState(false)
     const [showTag, setTag] = useState(false)
+    const [infoNote, setInfoNote] = useState([])
+    const [viewNote, setViewNote] = useState(false)
 
     const handleTextTareaChange = (e) => {
         const { name, value } = e.target
         setNote((prevState) => ({ ...prevState, [name]: value }))
+    };
+
+    const handleNote = (e) => {
+        const { name, value } = e.target
+        setInfoNote((prevState) => ({ ...prevState, [name]: value }))
     };
 
     const showLabel = () => {
@@ -57,20 +64,31 @@ export const OneNote = ({ user, setStateError, setLoading }) => {
             image: '',
         });
     }
+    const editNote = async () => {
+        const config = {
+            method: "PUT",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+            body: JSON.stringify(infoNote)
+        };
+        const response = await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${infoNote.id}`, config)
+        const note = await response.json();
+        setGetFlag(!getFlag)
+        setViewNote(false)
+    };
 
     return (
         <section className="newNoteArea">
-            <GetNotes user={user} getFlag={getFlag} setLoading={setLoading} />
+            <GetNotes user={user} getFlag={getFlag} setLoading={setLoading} setInfoNote={setInfoNote} setViewNote={setViewNote} />
             <div className='contentNote'>
                 {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
-                <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
+                {!viewNote ? <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
+                    : <textarea name='description' value={infoNote.description} onChange={handleNote} className="newNote" ></textarea>}
                 <section className="menuButtonsNote">
-                    <button onClick={() => addNotes()}>GUARDAR</button>
+                    {!viewNote ? <button onClick={() => addNotes()}>GUARDAR</button> : <button onClick={() => editNote()}>GUARDAR</button>}
                     <button onClick={() => showLabel()}>ETIQUETA</button>
                     <button onClick={() => cancelNote()}>BORRAR</button>
-
                 </section>
             </div>
         </section>
     )
-}
+};

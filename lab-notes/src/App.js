@@ -15,24 +15,27 @@ function App() {
     loginStateUser(setUser, setLoading);
   }, []);
 
-  //vista de cargando...
-  
+  //vista de cargando... Pending
+  if (loading) {
+    return <Loading />
+  }
   return (
     <BrowserRouter>
       <div>
-      { loading && <Loading /> }
-        {/* <Routes>
-          <Route path='/' element={<Loading />} />
-        </Routes> */}
-        { !loading && !user ?
-          <Routes>
-            <Route path='/' element={<Welcome />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-          :
-          <Routes>
-            <Route path='/' element={<Home user={user} setLoading={setLoading}/>} />
-          </Routes>
+        {loading && <Loading />}
+      
+        {
+          !loading && 
+          !user ?
+            <Routes>
+              <Route path='/' element={<Welcome />} />
+              <Route path='*' element={<NotFound />} />
+              <Route path='/load' element={<Loading />} />
+            </Routes>
+            :
+            <Routes>
+              <Route path='/' element={<Home user={user} setLoading={setLoading} />} />
+            </Routes>
         }
 
       </div>
