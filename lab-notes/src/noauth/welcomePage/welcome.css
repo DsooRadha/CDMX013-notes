@@ -1,0 +1,56 @@
+@media (min-width: 700px) and (orientation: landscape) {
+    body {
+        background-color: #073639;
+    }
+
+    .welcome {
+        display: flex;
+        height: 95vh;
+        margin: -1vh;
+    }
+
+    .left {
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .catDescription {
+        position: absolute;
+        bottom: -3.15vw;
+        width: 38vw;
+    }
+
+    .left .logo img {
+        width: 40vw
+    }
+
+    .rigth {
+        width: 38vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .googleBtn, .gitHubBtn {
+        background-color: rgb(255, 255, 255);
+        padding: 3vh;
+        padding-left: 7vw;
+        border-radius: 2vh;
+        background-image: url('https://user-images.githubusercontent.com/101679628/207458120-7b1f2017-2025-42cd-b763-b587af4f88d7.png');
+        background-repeat: no-repeat;
+        background-size: 5vw;
+        background-position: 1vw;
+        font-size: 1.5em;
+        cursor: pointer;
+        width: 30vw;
+        margin: 3vw;
+    }
+
+    .gitHubBtn{
+        background-image: url('https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png');
+    }
+}
