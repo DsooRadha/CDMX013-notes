@@ -28,6 +28,7 @@ export const GetNotes = ({ user, getFlag, setLoading, setInfoNote, setViewNote }
     const showNote = (item) => {
         setInfoNote(item);
         setViewNote(true);
+       
     }
 
     useEffect(() => {

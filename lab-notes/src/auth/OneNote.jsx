@@ -13,10 +13,10 @@ export const OneNote = ({ user, setStateError, setLoading }) => {
         description: '',
         image: '',
     });
-    const [getFlag, setGetFlag] = useState(false)
-    const [showTag, setTag] = useState(false)
-    const [infoNote, setInfoNote] = useState([])
-    const [viewNote, setViewNote] = useState(false)
+    const [getFlag, setGetFlag] = useState(false);
+    const [showTag, setTag] = useState(false);
+    const [infoNote, setInfoNote] = useState([]);
+    const [viewNote, setViewNote] = useState(false);
 
     const handleTextTareaChange = (e) => {
         const { name, value } = e.target
@@ -74,19 +74,31 @@ export const OneNote = ({ user, setStateError, setLoading }) => {
         const note = await response.json();
         setGetFlag(!getFlag)
         setViewNote(false)
+
     };
+
+    const deleteNote = async () => {
+        const config = {
+            method: "DELETE",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+        };
+        const response = await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${infoNote.id}`, config)
+        setGetFlag(!getFlag)
+        setViewNote(false)
+    }
 
     return (
         <section className="newNoteArea">
             <GetNotes user={user} getFlag={getFlag} setLoading={setLoading} setInfoNote={setInfoNote} setViewNote={setViewNote} />
             <div className='contentNote'>
                 {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
+                {viewNote ? <Tag note={infoNote} handleTextTareaChange={handleNote} /> : null}
                 {!viewNote ? <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
                     : <textarea name='description' value={infoNote.description} onChange={handleNote} className="newNote" ></textarea>}
                 <section className="menuButtonsNote">
                     {!viewNote ? <button onClick={() => addNotes()}>GUARDAR</button> : <button onClick={() => editNote()}>GUARDAR</button>}
                     <button onClick={() => showLabel()}>ETIQUETA</button>
-                    <button onClick={() => cancelNote()}>BORRAR</button>
+                    {!viewNote ? <button onClick={() => cancelNote()}>BORRAR</button> : <button onClick={() => deleteNote(infoNote)}>ELIMINAR</button>}
                 </section>
             </div>
         </section>
