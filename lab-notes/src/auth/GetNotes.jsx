@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useEffect } from 'react'
 import './HomePage/getNotes.css'
 
@@ -11,8 +10,8 @@ const SmallTag = ({ item }) => {
     )
 };
 
-export const GetNotes = ({ user }) => {
-    const [allNotes, setAllNotes] = useState([]);
+export const GetNotes = ({ user, getFlag, setLoading, setInfoNote, setViewNote, setAllNotes, allNotes, setSearchAllNotes }) => {
+
     const getAllNotes = async () => {
         const config = {
             method: "GET",
@@ -21,19 +20,27 @@ export const GetNotes = ({ user }) => {
         const response = await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes?uid=${user.uid}`, config)
         const allNotes = await response.json();
         setAllNotes(allNotes)
+        setSearchAllNotes(allNotes)
+        // setLoading(false)
     };
 
+    const showNote = (item) => {
+        setInfoNote(item);
+        setViewNote(true);
+    }
+
     useEffect(() => {
+        // setLoading(true)
         getAllNotes()
-    }, []);
+    }, [getFlag]);
 
     return (
         <section className='allNotes'>
             {allNotes.length > 0 && allNotes.map((item) =>
-                <div className='petitNotes' key={item.id}>
+                <button onClick={() => showNote(item)} className='petitNotes' key={item.id}>
                     <div className='textDescription'>{(item.description).slice(0, 14) + '...'}</div>
                     {item.label !== '' && <SmallTag item={item} />}
-                </div>
+                </button>
             )}
         </section>
     )

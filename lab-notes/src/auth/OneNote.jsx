@@ -3,7 +3,7 @@ import { GetNotes } from './GetNotes';
 import './HomePage/oneNote.css'
 import { Tag } from './Tag';
 
-export const OneNote = ({ user, setStateError }) => {
+export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, setAllNotes, allNotes, viewNote, setViewNote, setNoNotes, setShowNewNote, getFlag, setGetFlag }) => {
 
     const dateNote = new Date();
     const [note, setNote] = useState({
@@ -14,11 +14,18 @@ export const OneNote = ({ user, setStateError }) => {
         image: '',
     });
 
-    const [showTag, setTag] = useState(false)
+    const [showTag, setTag] = useState(false);
+    const [infoNote, setInfoNote] = useState([]);
+
 
     const handleTextTareaChange = (e) => {
         const { name, value } = e.target
         setNote((prevState) => ({ ...prevState, [name]: value }))
+    };
+
+    const handleNote = (e) => {
+        const { name, value } = e.target
+        setInfoNote((prevState) => ({ ...prevState, [name]: value }))
     };
 
     const showLabel = () => {
@@ -44,6 +51,7 @@ export const OneNote = ({ user, setStateError }) => {
             setStateError(false)
             cancelNote()
             // getAllNotes()
+            setGetFlag(!getFlag)
         }
     };
 
@@ -56,20 +64,41 @@ export const OneNote = ({ user, setStateError }) => {
             image: '',
         });
     }
+    const editNote = async () => {
+        const config = {
+            method: "PUT",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+            body: JSON.stringify(infoNote)
+        };
+        await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${infoNote.id}`, config)
+        setGetFlag(!getFlag)
+        setViewNote(false)
+    };
+
+    const deleteNote = async () => {
+        const config = {
+            method: "DELETE",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+        };
+        await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${infoNote.id}`, config)
+        setGetFlag(!getFlag)
+        setViewNote(false)
+    }
 
     return (
         <section className="newNoteArea">
-            <GetNotes user={user} />
+            <GetNotes setSearchAllNotes={setSearchAllNotes} user={user} getFlag={getFlag} setLoading={setLoading} setInfoNote={setInfoNote} setViewNote={setViewNote} setAllNotes={setAllNotes} allNotes={allNotes} />
             <div className='contentNote'>
                 {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
-                <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
+                {viewNote ? <Tag note={infoNote} handleTextTareaChange={handleNote} /> : null}
+                {!viewNote ? <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
+                    : <textarea name='description' value={infoNote.description} onChange={handleNote} className="newNote" ></textarea>}
                 <section className="menuButtonsNote">
-                    <button onClick={() => addNotes()}>GUARDAR</button>
+                    {!viewNote ? <button onClick={() => addNotes()}>GUARDAR</button> : <button onClick={() => editNote()}>GUARDAR</button>}
                     <button onClick={() => showLabel()}>ETIQUETA</button>
-                    <button onClick={() => cancelNote()}>BORRAR</button>
-
+                    {!viewNote ? <button onClick={() => cancelNote()}>BORRAR</button> : <button onClick={() => deleteNote(infoNote)}>ELIMINAR</button>}
                 </section>
             </div>
         </section>
     )
-}
+};

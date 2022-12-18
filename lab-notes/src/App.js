@@ -1,33 +1,43 @@
-import { BrowserRouter, Route, Routes, redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Welcome } from './noauth/welcomePage/Welcome';
 import { NotFound } from './noauth/NoFoundPage/NotFound';
 import { Home } from './auth/Home';
 import { loginStateUser } from './lib/provaiders.js'
-
+import { Loading } from './elements/Loading';
 
 function App() {
-  const [user, setUser] = useState(null)
 
-useEffect(()=>{
-  loginStateUser(setUser);
-}, [])
- //vista de cargando...
-  
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    loginStateUser(setUser, setLoading);
+  }, []);
+
+  //vista de cargando... Pending
+  if (loading) {
+    return <Loading />
+  }
   return (
     <BrowserRouter>
       <div>
-        {!user ?
-          <Routes>
-            <Route path='/' element={<Welcome />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-          :
-          <Routes>
-            <Route path='/' element={<Home user={user}/>} />
-            <Route path='/test' element={<h1>PRUEBA</h1>} />
-          </Routes>
+        {loading && <Loading />}
+      
+        {
+          !loading && 
+          !user ?
+            <Routes>
+              <Route path='/' element={<Welcome />} />
+              <Route path='*' element={<NotFound />} />
+              <Route path='/load' element={<Loading />} />
+            </Routes>
+            :
+            <Routes>
+              <Route path='/' element={<Home user={user} setLoading={setLoading} />} />
+            </Routes>
         }
+
       </div>
     </ BrowserRouter >
   );
