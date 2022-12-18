@@ -7,23 +7,37 @@ import { SearchIcon } from '@primer/octicons-react'
 
 // AGREGAR Iconos de libreria imagenes, add, search
 export const Home = ({ user, setLoading }) => {
-    const [showNewNote, setShowNewNote] = useState(false)
-    const [noNotes, setNoNotes] = useState(true)
+
+    const [showNewNote, setShowNewNote] = useState(true)
+    const [noNotes, setNoNotes] = useState(false)
     const [stateError, setStateError] = useState(false)
     const [inputSearch, setInputSearch] = useState('')
     const [allNotes, setAllNotes] = useState([]);
     const [getFlag, setGetFlag] = useState(false);
+    const [viewNote, setViewNote] = useState(false);
+    const [searchAllNotes, setSearchAllNotes] = useState([]);
+
     const newNote = () => {
         setNoNotes(false)
-        setShowNewNote(true)
+        setViewNote(false)
     };
 
     const handleInput = (e) => {
         setInputSearch(e.target.value)
+        search(e.target.value)
     };
-    
-    let result = !inputSearch ? allNotes : allNotes.filter((note) => (note.description).toLowerCase().includes(inputSearch.toLowerCase()));
-    console.log(result)
+
+
+    const search = (textSearch) => {
+        const resultSearch = searchAllNotes.filter((note) => {
+            if ((note.description).toLowerCase().includes(textSearch.toLowerCase())) {
+                return note
+            }
+        });
+
+        setAllNotes(resultSearch);
+    };
+
 
     return (
         <div className="home">
@@ -31,19 +45,15 @@ export const Home = ({ user, setLoading }) => {
                 <div className="buttonAndSearch">
                     <button className='createNote' onClick={() => { newNote() }}>CREAR NOTA   +</button>
                     <input value={inputSearch} onChange={handleInput} className='search' placeholder="Busqueda..." type="text" />
+                    {/* <button onClick={() => { search() }} >SEARCH</button> */}
                     <SearchIcon className='iconSearch' size={33} />
                 </div>
                 <section className="notes">
-                    {showNewNote && <OneNote
-                        setGetFlag={setGetFlag} getFlag={getFlag}
-                        user={user} setStateError={setStateError} setLoading={setLoading} setAllNotes={setAllNotes} allNotes={allNotes} />}
+                    {showNewNote && !noNotes && <OneNote setSearchAllNotes={setSearchAllNotes} getFlag={getFlag} setGetFlag={setGetFlag} setNoNotes={setNoNotes} viewNote={viewNote} setShowNewNote={setShowNewNote} setViewNote={setViewNote} user={user} setStateError={setStateError} setLoading={setLoading} setAllNotes={setAllNotes} allNotes={allNotes} />}
                 </section>
             </section>
-            {noNotes && <NoNotes />}
-            <Exit user={user}
-                stateError={stateError}
-            />
-
+            {allNotes.length < 1 && noNotes ? <NoNotes /> : null}
+            <Exit user={user} stateError={stateError} />
         </div>
     )
 }
