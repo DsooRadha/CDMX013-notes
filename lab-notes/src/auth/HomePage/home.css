@@ -15,11 +15,12 @@
     }
 
     .buttonAndSearch input {
-        width: 45vw;
+        width: 42vw;
         font-size: 1em;
         padding: 1.5vw;
         border-radius: 2vh;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        padding-right: 5vw;
     }
 
     .createNote,
@@ -47,4 +48,9 @@
         justify-content: space-between;
     }
 
+    .iconSearch {
+        position: absolute;
+        right: 24vw;
+     opacity: 0.4;
+    }
 }

@@ -3,7 +3,7 @@ import { GetNotes } from './GetNotes';
 import './HomePage/oneNote.css'
 import { Tag } from './Tag';
 
-export const OneNote = ({ user, setStateError, setLoading }) => {
+export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, setAllNotes, allNotes, viewNote, setViewNote, setNoNotes, setShowNewNote, getFlag, setGetFlag }) => {
 
     const dateNote = new Date();
     const [note, setNote] = useState({
@@ -13,10 +13,10 @@ export const OneNote = ({ user, setStateError, setLoading }) => {
         description: '',
         image: '',
     });
-    const [getFlag, setGetFlag] = useState(false);
+
     const [showTag, setTag] = useState(false);
     const [infoNote, setInfoNote] = useState([]);
-    const [viewNote, setViewNote] = useState(false);
+
 
     const handleTextTareaChange = (e) => {
         const { name, value } = e.target
@@ -70,11 +70,9 @@ export const OneNote = ({ user, setStateError, setLoading }) => {
             headers: { "Content-type": "application/json;charset=UTF-8" },
             body: JSON.stringify(infoNote)
         };
-        const response = await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${infoNote.id}`, config)
-        const note = await response.json();
+        await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${infoNote.id}`, config)
         setGetFlag(!getFlag)
         setViewNote(false)
-
     };
 
     const deleteNote = async () => {
@@ -82,14 +80,14 @@ export const OneNote = ({ user, setStateError, setLoading }) => {
             method: "DELETE",
             headers: { "Content-type": "application/json;charset=UTF-8" },
         };
-        const response = await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${infoNote.id}`, config)
+        await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${infoNote.id}`, config)
         setGetFlag(!getFlag)
         setViewNote(false)
     }
 
     return (
         <section className="newNoteArea">
-            <GetNotes user={user} getFlag={getFlag} setLoading={setLoading} setInfoNote={setInfoNote} setViewNote={setViewNote} />
+            <GetNotes setSearchAllNotes={setSearchAllNotes} user={user} getFlag={getFlag} setLoading={setLoading} setInfoNote={setInfoNote} setViewNote={setViewNote} setAllNotes={setAllNotes} allNotes={allNotes} />
             <div className='contentNote'>
                 {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
                 {viewNote ? <Tag note={infoNote} handleTextTareaChange={handleNote} /> : null}
