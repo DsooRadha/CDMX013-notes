@@ -11,9 +11,8 @@ const SmallTag = ({ item }) => {
     )
 };
 
-export const GetNotes = ({ user, getFlag, setLoading, setInfoNote, setViewNote }) => {
-    const [allNotes, setAllNotes] = useState([]);
-
+export const GetNotes = ({ user, getFlag, setLoading, setInfoNote, setViewNote, setAllNotes, allNotes}) => {
+   
     const getAllNotes = async () => {
         const config = {
             method: "GET",
