@@ -89,8 +89,8 @@ export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, se
         <section className="newNoteArea">
             <GetNotes setSearchAllNotes={setSearchAllNotes} user={user} getFlag={getFlag} setLoading={setLoading} setInfoNote={setInfoNote} setViewNote={setViewNote} setAllNotes={setAllNotes} allNotes={allNotes} />
             <div className='contentNote'>
-                {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
-                {viewNote ? <Tag note={infoNote} handleTextTareaChange={handleNote} /> : null}
+                {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange}     />}
+                {viewNote ? <Tag note={infoNote} handleTextTareaChange={handleNote} value={infoNote.description} /> : null}
                 {!viewNote ? <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
                     : <textarea name='description' value={infoNote.description} onChange={handleNote} className="newNote" ></textarea>}
                 <section className="menuButtonsNote">

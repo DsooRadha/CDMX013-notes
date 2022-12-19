@@ -36,10 +36,8 @@ export const Home = ({ user, setLoading, allNotes, setAllNotes, setHideMichi, hi
                 return note
             }
         });
-
         setAllNotes(resultSearch);
     };
-
 
     return (
         <div className="home">
@@ -47,11 +45,12 @@ export const Home = ({ user, setLoading, allNotes, setAllNotes, setHideMichi, hi
                 <div className="buttonAndSearch">
                     <button className='createNote' onClick={() => { newNote() }}>CREAR NOTA   +</button>
                     <input value={inputSearch} onChange={handleInput} className='search' placeholder="Busqueda..." type="text" />
-                    {/* <button onClick={() => { search() }} >SEARCH</button> */}
                     <SearchIcon className='iconSearch' size={33} />
                 </div>
                 <section className="notes">
-                    {(allNotes.length !== 0 || hideMichi) && <OneNote setSearchAllNotes={setSearchAllNotes} getFlag={getFlag} setGetFlag={setGetFlag} setNoNotes={setNoNotes} viewNote={viewNote} setShowNewNote={setShowNewNote} setViewNote={setViewNote} user={user} setStateError={setStateError} setLoading={setLoading} setAllNotes={setAllNotes} allNotes={allNotes} />}
+                    {(allNotes.length !== 0 || hideMichi) && <OneNote setSearchAllNotes={setSearchAllNotes} getFlag={getFlag} setGetFlag={setGetFlag}
+                        setNoNotes={setNoNotes} viewNote={viewNote} setShowNewNote={setShowNewNote} setViewNote={setViewNote} user={user} setStateError={setStateError}
+                        setLoading={setLoading} setAllNotes={setAllNotes} allNotes={allNotes} />}
                 </section>
             </section>
             {allNotes.length === 0 && !hideMichi ? <NoNotes /> : null}

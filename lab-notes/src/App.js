@@ -13,7 +13,7 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [allNotes, setAllNotes] = useState([]);
   const [hideMichi, setHideMichi] = useState(false)
-  // registerGitHub(setCatchProvaider);
+// registerGitHub(setCatchProvaider);
 
   useEffect(() => {
     loginStateUser(setUser, setLoading);
@@ -29,7 +29,7 @@ function App() {
         {/* {loading && <Loading />} */}
         {!user ?
           <Routes>
-            <Route path='/' element={<Welcome allNotes={allNotes} setHideMichi={setHideMichi} catchProvider={catchProvider} />} />
+            <Route path='/' element={<Welcome allNotes={allNotes} setHideMichi={setHideMichi} setCatchProvaider={setCatchProvaider} catchProvider={catchProvider} />} />
             <Route path='*' element={<NotFound />} />
             <Route path='/load' element={<Loading />} />
           </Routes>

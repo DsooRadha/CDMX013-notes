@@ -30,18 +30,19 @@
 
 .tagLabel{
     position: absolute;
-    width:12vw;
+    width:19vw;
     top:22vh;
-    right: 13vw;
+    right: 8.5vw;
+    height: 13vh;
 }
 .labelCat{
     position: absolute;
-    width:15vw;
-    top:24.36vh;
-    right: 7vw;
+    width:14vw;
+    top:25.5vh;
+    right: 9vw;
     background: none;
     border: none;
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 1vh;
     color: aliceblue;
     z-index: 1;
