@@ -6,20 +6,22 @@ import './HomePage/home.css';
 import { SearchIcon } from '@primer/octicons-react'
 
 // AGREGAR Iconos de libreria imagenes, add, search
-export const Home = ({ user, setLoading }) => {
+export const Home = ({ user, setLoading, allNotes, setAllNotes, setHideMichi, hideMichi }) => {
 
     const [showNewNote, setShowNewNote] = useState(true)
     const [noNotes, setNoNotes] = useState(false)
     const [stateError, setStateError] = useState(false)
     const [inputSearch, setInputSearch] = useState('')
-    const [allNotes, setAllNotes] = useState([]);
+
     const [getFlag, setGetFlag] = useState(false);
-    const [viewNote, setViewNote] = useState(false);
+    const [viewNote, setViewNote] = useState(true);
     const [searchAllNotes, setSearchAllNotes] = useState([]);
 
+
     const newNote = () => {
-        setNoNotes(false)
+        setHideMichi(true)
         setViewNote(false)
+        setNoNotes(true)
     };
 
     const handleInput = (e) => {
@@ -49,11 +51,11 @@ export const Home = ({ user, setLoading }) => {
                     <SearchIcon className='iconSearch' size={33} />
                 </div>
                 <section className="notes">
-                    {showNewNote && !noNotes && <OneNote setSearchAllNotes={setSearchAllNotes} getFlag={getFlag} setGetFlag={setGetFlag} setNoNotes={setNoNotes} viewNote={viewNote} setShowNewNote={setShowNewNote} setViewNote={setViewNote} user={user} setStateError={setStateError} setLoading={setLoading} setAllNotes={setAllNotes} allNotes={allNotes} />}
+                    {(allNotes.length !== 0 || hideMichi) && <OneNote setSearchAllNotes={setSearchAllNotes} getFlag={getFlag} setGetFlag={setGetFlag} setNoNotes={setNoNotes} viewNote={viewNote} setShowNewNote={setShowNewNote} setViewNote={setViewNote} user={user} setStateError={setStateError} setLoading={setLoading} setAllNotes={setAllNotes} allNotes={allNotes} />}
                 </section>
             </section>
-            {allNotes.length < 1 && noNotes ? <NoNotes /> : null}
+            {allNotes.length === 0 && !hideMichi ? <NoNotes /> : null}
             <Exit user={user} stateError={stateError} />
         </div>
     )
-}
+};

@@ -8,12 +8,21 @@ const providerGitHub = new GithubAuthProvider();
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 
-export const registerWithGoogle = () => signInWithPopup(auth, provider)
-// .then((setLoading) => { setLoading(true) });
+export const registerWithGoogle = (allNotes, setHideMichi) => signInWithPopup(auth, provider)
+.then((setLoading) => { 
+    if(allNotes!== 0){
+        setHideMichi(true)
+    } });
 
-export const registerGitHub = () => signInWithPopup(auth, providerGitHub);
+export const registerGitHub = (setMessageErrorLogin) => signInWithPopup(auth, providerGitHub)
+.then(()=>{
+    setMessageErrorLogin(false)
+})
+.catch(() => {
+    setMessageErrorLogin(true)
+  });;
 
-export const loginStateUser = (setUser) => {
+export const loginStateUser = (setUser, setLoading) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             console.log('Existe un usuario activo');

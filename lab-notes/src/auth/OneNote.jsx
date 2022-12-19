@@ -3,7 +3,7 @@ import { GetNotes } from './GetNotes';
 import './HomePage/oneNote.css'
 import { Tag } from './Tag';
 
-export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, setAllNotes, allNotes, viewNote, setViewNote, setNoNotes, setShowNewNote, getFlag, setGetFlag }) => {
+export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, setAllNotes, allNotes, viewNote, setViewNote,  getFlag, setGetFlag }) => {
 
     const dateNote = new Date();
     const [note, setNote] = useState({
@@ -94,7 +94,7 @@ export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, se
                 {!viewNote ? <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
                     : <textarea name='description' value={infoNote.description} onChange={handleNote} className="newNote" ></textarea>}
                 <section className="menuButtonsNote">
-                    {!viewNote ? <button onClick={() => addNotes()}>GUARDAR</button> : <button onClick={() => editNote()}>GUARDAR</button>}
+                    {!viewNote ? <button onClick={() => addNotes()}>GUARDAR</button> : <button onClick={() => editNote()}>GUARDARR</button>}
                     <button onClick={() => showLabel()}>ETIQUETA</button>
                     {!viewNote ? <button onClick={() => cancelNote()}>BORRAR</button> : <button onClick={() => deleteNote(infoNote)}>ELIMINAR</button>}
                 </section>
