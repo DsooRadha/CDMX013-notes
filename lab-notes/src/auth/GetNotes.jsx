@@ -10,7 +10,7 @@ const SmallTag = ({ item }) => {
     )
 };
 
-export const GetNotes = ({ user, getFlag, setLoading, setInfoNote, setViewNote, setAllNotes, allNotes, setSearchAllNotes }) => {
+export const GetNotes = ({ setTag,  setStateError,  user, getFlag,  setInfoNote, setViewNote, setAllNotes, allNotes, setSearchAllNotes }) => {
 
     const getAllNotes = async () => {
         const config = {
@@ -21,16 +21,16 @@ export const GetNotes = ({ user, getFlag, setLoading, setInfoNote, setViewNote, 
         const allNotes = await response.json();
         setAllNotes(allNotes)
         setSearchAllNotes(allNotes)
-        // setLoading(false)
     };
 
     const showNote = (item) => {
         setInfoNote(item);
         setViewNote(true);
+        item.label === '' ? setTag(false) : setTag(true)
+        setStateError(false)
     }
 
     useEffect(() => {
-        // setLoading(true)
         getAllNotes()
     }, [getFlag]);
 

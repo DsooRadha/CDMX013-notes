@@ -7,35 +7,32 @@ import { loginStateUser } from './lib/provaiders.js'
 import { Loading } from './elements/Loading';
 
 function App() {
-
+ 
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [allNotes, setAllNotes] = useState([]);
+  const [hideMichi, setHideMichi] = useState(false)
 
   useEffect(() => {
     loginStateUser(setUser, setLoading);
   }, []);
 
-  //vista de cargando... Pending
   if (loading) {
     return <Loading />
   }
   return (
     <BrowserRouter>
       <div>
-        {loading && <Loading />}
-      
-        {
-          !loading && 
-          !user ?
-            <Routes>
-              <Route path='/' element={<Welcome />} />
-              <Route path='*' element={<NotFound />} />
-              <Route path='/load' element={<Loading />} />
-            </Routes>
-            :
-            <Routes>
-              <Route path='/' element={<Home user={user} setLoading={setLoading} />} />
-            </Routes>
+        {!user ?
+          <Routes>
+            <Route path='/' element={<Welcome allNotes={allNotes} setHideMichi={setHideMichi} />} />
+            <Route path='*' element={<NotFound />} />
+            <Route path='/load' element={<Loading />} />
+          </Routes>
+          :
+          <Routes>
+            <Route path='/' element={<Home setHideMichi={setHideMichi} hideMichi={hideMichi} user={user} setLoading={setLoading} allNotes={allNotes} setAllNotes={setAllNotes} />} />
+          </Routes>
         }
 
       </div>

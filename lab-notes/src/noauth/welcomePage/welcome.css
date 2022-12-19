@@ -53,4 +53,19 @@
     .gitHubBtn{
         background-image: url('https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png');
     }
+
+    .rigth .errorContent{
+        background-color: #88243875;
+        color: rgb(255, 255, 255);
+        font-size: 1.6em;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-align: center;
+        width: 25vw;
+        border-radius: 2vw;
+        padding: 3vw;
+    }
+
+    .rigth .CatCarey{
+        width: 15vw;
+    }
 }
