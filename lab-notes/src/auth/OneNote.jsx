@@ -3,7 +3,7 @@ import { GetNotes } from './GetNotes';
 import './HomePage/oneNote.css'
 import { Tag } from './Tag';
 
-export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, setAllNotes, allNotes, viewNote, setViewNote,  getFlag, setGetFlag }) => {
+export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, setAllNotes, allNotes, viewNote, setViewNote, getFlag, setGetFlag }) => {
 
     const dateNote = new Date();
     const [note, setNote] = useState({
@@ -16,7 +16,7 @@ export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, se
 
     const [showTag, setTag] = useState(false);
     const [infoNote, setInfoNote] = useState([]);
-
+    // const [showEditTag, setShowEditTag]=useState(false)
 
     const handleTextTareaChange = (e) => {
         const { name, value } = e.target
@@ -50,7 +50,6 @@ export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, se
             setTag(false)
             setStateError(false)
             cancelNote()
-            // getAllNotes()
             setGetFlag(!getFlag)
         }
     };
@@ -87,14 +86,19 @@ export const OneNote = ({ user, setSearchAllNotes, setStateError, setLoading, se
 
     return (
         <section className="newNoteArea">
-            <GetNotes setSearchAllNotes={setSearchAllNotes} user={user} getFlag={getFlag} setLoading={setLoading} setInfoNote={setInfoNote} setViewNote={setViewNote} setAllNotes={setAllNotes} allNotes={allNotes} />
+            <GetNotes
+                setTag={setTag} setStateError={setStateError} setSearchAllNotes={setSearchAllNotes} user={user} getFlag={getFlag} setLoading={setLoading}
+                setInfoNote={setInfoNote} infoNotes={infoNote} setViewNote={setViewNote} setAllNotes={setAllNotes} allNotes={allNotes} />
             <div className='contentNote'>
-                {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange}     />}
-                {viewNote ? <Tag note={infoNote} handleTextTareaChange={handleNote} value={infoNote.description} /> : null}
+                {showTag && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
+                {viewNote
+                    && showTag
+                    // && setShowEditTag 
+                    ? <Tag note={infoNote} handleTextTareaChange={handleNote} value={infoNote.description} /> : null}
                 {!viewNote ? <textarea name='description' value={note.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>
                     : <textarea name='description' value={infoNote.description} onChange={handleNote} className="newNote" ></textarea>}
                 <section className="menuButtonsNote">
-                    {!viewNote ? <button onClick={() => addNotes()}>GUARDAR</button> : <button onClick={() => editNote()}>GUARDARR</button>}
+                    {!viewNote ? <button onClick={() => addNotes()}>GUARDAR</button> : <button onClick={() => editNote()}>GUARDAR</button>}
                     <button onClick={() => showLabel()}>ETIQUETA</button>
                     {!viewNote ? <button onClick={() => cancelNote()}>BORRAR</button> : <button onClick={() => deleteNote(infoNote)}>ELIMINAR</button>}
                 </section>

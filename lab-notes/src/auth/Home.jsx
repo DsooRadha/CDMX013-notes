@@ -12,7 +12,6 @@ export const Home = ({ user, setLoading, allNotes, setAllNotes, setHideMichi, hi
     const [noNotes, setNoNotes] = useState(false)
     const [stateError, setStateError] = useState(false)
     const [inputSearch, setInputSearch] = useState('')
-
     const [getFlag, setGetFlag] = useState(false);
     const [viewNote, setViewNote] = useState(true);
     const [searchAllNotes, setSearchAllNotes] = useState([]);

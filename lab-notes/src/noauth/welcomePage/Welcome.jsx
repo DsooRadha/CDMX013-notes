@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { Logo } from '../../elements/Logo'
-import './welcome.css'
 import { registerWithGoogle, registerGitHub } from '../../lib/provaiders.js'
 import { MessageError } from '../../elements/MessageError'
+import './welcome.css'
 
-export const Welcome = ({ catchProvider, allNotes, setHideMichi, setCatchProvaider }) => {
-
+export const Welcome = ({ allNotes, setHideMichi }) => {
+    const [catchProvider, setCatchProvaider] = useState(false)
+    
     return (
         <div className='welcome'>
             <section className='left'>
