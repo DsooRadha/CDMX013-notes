@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Welcome } from './noauth/welcomePage/Welcome';
 import { NotFound } from './noauth/NoFoundPage/NotFound';
-import { Home } from './auth/Home';
+import { Home } from './auth/HomePage/Home';
 import { loginStateUser } from './lib/provaiders.js'
 import { Loading } from './elements/Loading';
 import { ShowMichi } from './auth/MichiKaren/ShowMichi';

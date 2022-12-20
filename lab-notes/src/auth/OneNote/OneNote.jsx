@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './oneNote.css'
 import { Tag } from '../tag/Tag';
 
-export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, setNote,  getAllNotes}) => {
+export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, setNote,  getAllNotes, changesTextArea}) => {
 
     const dateNote = new Date();
     const [newNote, setNewNote] = useState({
@@ -14,6 +14,7 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
     });
     const [tag, setTag] = useState(false);
     const [infoNote, setInfoNote] = useState([]);
+    
 
     const handleTextTareaChange = (e) => {
         const { name, value } = e.target
@@ -30,7 +31,7 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
     };
 
     const addNotes = async () => {
-        if (note.description === '') {
+        if (newNote.description === '') {
             console.log('esta nota esta vacia')
         } else {
 
@@ -44,9 +45,8 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
             };
             await fetch('https://639b6461d5141501975434d1.mockapi.io/notes', config);
             setTag(false)
-            // cancelNote()
-            // newNoteArea()
             getAllNotes()
+            changesTextArea()
         }
     };
 

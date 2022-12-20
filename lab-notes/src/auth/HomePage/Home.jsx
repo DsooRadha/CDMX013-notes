@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Exit } from './exit/Exit';
-import { OneNote } from './OneNote/OneNote';
-import './HomePage/home.css';
+import { Exit } from '../exit/Exit';
+import { OneNote } from '../OneNote/OneNote';
+import './home.css';
 import { SearchIcon } from '@primer/octicons-react'
-import { SmallTag } from './tag/SmallTag';
+import { SmallTag } from '../tag/SmallTag';
 
 export const Home = ({ user, setLoading }) => {
 
@@ -21,6 +21,11 @@ export const Home = ({ user, setLoading }) => {
 
     const updateNotes = (noteId) => {
         setAllNotes(allNotes.filter((item) => item.id !== noteId))
+    }
+
+    const changesTextArea=() => {
+        showNewNote(true)
+        showOldNote(true)
     }
 
     const getAllNotes = async () => {
@@ -86,7 +91,7 @@ export const Home = ({ user, setLoading }) => {
                             </button>
                         )};
                     </nav>
-                    <OneNote newNoteArea={newNoteArea} getAllNotes={getAllNotes} setNote={setNote} showNewNote={showNewNote} note={note} user={user} updateNotes={updateNotes} showOldNote={showOldNote} />
+                    <OneNote changesTextArea={changesTextArea} getAllNotes={getAllNotes} setNote={setNote} showNewNote={showNewNote} note={note} user={user} updateNotes={updateNotes} showOldNote={showOldNote} />
 
                 </section>
             </section>
