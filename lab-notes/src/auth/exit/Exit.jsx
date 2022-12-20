@@ -1,7 +1,7 @@
-import { Logo } from '../elements/Logo';
-import { MessageError } from '../elements/MessageError';
-import { singOutSession } from '../lib/provaiders.js';
-import './HomePage/exit.css'
+import { Logo } from '../../elements/Logo';
+import { MessageError } from '../../elements/MessageError';
+import { singOutSession } from '../../lib/provaiders.js';
+import './exit.css'
 
 export const Exit = ({ stateError, user }) => {
 

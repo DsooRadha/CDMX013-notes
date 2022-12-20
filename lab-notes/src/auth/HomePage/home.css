@@ -51,6 +51,52 @@
     .iconSearch {
         position: absolute;
         right: 24vw;
-     opacity: 0.4;
+        opacity: 0.4;
+    }
+
+    .textDescription {
+        width: 21vw;
+    }
+
+    .labelNotes {
+        width: 9.5vw;
+        position: relative;
+    }
+
+    .allNotesRender {
+        height: 81vh;
+        border-radius: 1vh;
+        width: 36vw;
+        margin: 0 2vh;
+        overflow: scroll;
+    }
+    .petitNotes {
+        background-color: #696969;
+        display: flex;
+        flex-direction: row;
+        padding: 1vw;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: rgb(249, 249, 249);
+        align-items: center;
+        height: 8.5vh;
+        font-size: 1.1em;
+        border: none;
+        text-align: left;
+    }
+    .petitTagLabel {
+        width: 11vh;
+        height: 5vh;
+        position: absolute;
+       top: -2.5vh;
+    }
+
+    .labelNotes p {
+        position: absolute;
+        z-index: 1;
+        top: -2.1vh;
+        font-size: 0.5em;
+        left:  2.3vh;
+        width: 6vw;
+        text-align: center;
     }
 }

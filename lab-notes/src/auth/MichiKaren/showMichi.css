@@ -1,0 +1,51 @@
+.catPlants {
+    width: 40vw;
+    position: absolute;
+    left: 4vw;
+    top: 28vw;
+}
+
+.arrowNotes {
+    position: absolute;
+    top: 18vw;
+    width: 33vw;
+    left: 32vw;
+    transform: rotate(20deg);
+}
+
+.noNotes h2 {
+    color: rgb(255, 255, 255);
+    font-size: 3.2em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    position: absolute;
+    width: 40vw;
+    left: 45vw;
+    top: 32vw;
+}
+
+.noNotes {
+    display: flex;
+    width: 100vw;
+    height: 98vh;
+    justify-content: center;
+}
+
+.KarenMichi {
+    width: 80vw;
+   justify-content: center;
+   display: flex;
+}
+
+.btnNAvigateNote {
+width: 70vw;
+height: 10vh;
+margin: 2vw;
+background-color: #AF3E25;
+color: rgb(255, 255, 255);
+font-size: 1.5em;
+padding: 1.5vw;
+border-radius: 2vh;
+border: none;
+
+}
