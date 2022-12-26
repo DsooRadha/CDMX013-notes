@@ -20,7 +20,7 @@ export const ShowMichi = ({ username }) => {
     return (
         <div className='noNotes'>
             <div className='KarenMichi'>
-                <button className='btnNAvigateNote' onClick={NavigateToNotes} >CREAR NOTA +</button>
+                <button className='btnNAvigateNote' onClick={NavigateToNotes} >NOTAS</button>
                 <img className="arrowNotes" src="https://user-images.githubusercontent.com/101679628/207672070-f83787c7-031f-488a-8c34-95f3318c4e91.png" alt="arrow" />
                 <h2>¡Karen{username}, <br /> crea una nota!</h2>
                 <img className="catPlants" src="https://user-images.githubusercontent.com/101679628/207672094-6cdd4d1f-b01f-4525-9bed-139fa719beaf.png" alt="CatPlant" />

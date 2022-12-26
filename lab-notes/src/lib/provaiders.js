@@ -39,4 +39,4 @@ export const loginStateUser = (setUser, setLoading) => {
     })
 };
 
-export const singOutSession = () => signOut(auth);
+export const singOutSession = () =>  signOut(auth)

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './oneNote.css'
 import { Tag } from '../tag/Tag';
 
-export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, setNote,  getAllNotes, changesTextArea}) => {
+export const OneNote = ({ showError, note, tag, deleteLabel, showLabel, user, showOldNote, showNewNote, setNote,  getAllNotes,  newNoteArea}) => {
 
     const dateNote = new Date();
     const [newNote, setNewNote] = useState({
@@ -12,10 +12,8 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
         description: '',
         image: '',
     });
-    const [tag, setTag] = useState(false);
-    const [infoNote, setInfoNote] = useState([]);
+    // const [infoNote, setInfoNote] = useState([]);
     
-
     const handleTextTareaChange = (e) => {
         const { name, value } = e.target
         setNewNote((prevState) => ({ ...prevState, [name]: value }))
@@ -26,15 +24,10 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
         setNote((prevState) => ({ ...prevState, [name]: value }))
     };
 
-    const showLabel = () => {
-        setTag(true)
-    };
-
     const addNotes = async () => {
         if (newNote.description === '') {
-            console.log('esta nota esta vacia')
+           showError()
         } else {
-
             const config = {
                 method: 'POST',
                 headers: {
@@ -44,9 +37,10 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
                 body: JSON.stringify(newNote)
             };
             await fetch('https://639b6461d5141501975434d1.mockapi.io/notes', config);
-            setTag(false)
+          deleteLabel()
             getAllNotes()
-            changesTextArea()
+            newNoteArea()
+            cancelNote()
         }
     };
 
@@ -68,6 +62,7 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
         };
         await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${note.id}`, config)
         getAllNotes()
+        newNoteArea()
     };
 
     const deleteNote = async () => {
@@ -76,8 +71,9 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
             headers: { "Content-type": "application/json;charset=UTF-8" },
         };
         await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${note.id}`, config)
-        updateNotes(infoNote.id)
+        // updateNotes(note.id)
         getAllNotes()
+        newNoteArea()
     }
 
     return (
@@ -86,10 +82,10 @@ export const OneNote = ({ note, user, updateNotes, showOldNote, showNewNote, set
                 {showNewNote && <textarea name='description' value={newNote.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>}
                 {showOldNote && <textarea name='description' value={note.description} onChange={handleNote} className="newNote" ></textarea>}
                 {tag && showNewNote &&<Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
-                {showOldNote &&<Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
+                {showOldNote && tag &&<Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
                 <section className="menuButtonsNote">
                     {showNewNote  && <button onClick={() => addNotes()}>GUARDAR</button>}
-                    {showOldNote &&  <button onClick={() => editNote()}>GUARDAR</button>}
+                    {showOldNote &&  <button onClick={() => editNote()}>GUARDARR</button>}
                     <button onClick={() => showLabel()}>ETIQUETA</button>
                     {showNewNote && <button onClick={() => cancelNote()}>BORRAR</button> }
                     {showOldNote && <button onClick={() => deleteNote()}>ELIMINAR</button>} 
