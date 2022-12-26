@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Exit } from '../exit/Exit';
-import { OneNote } from '../OneNote/OneNote';
 import { SmallTag } from '../tag/SmallTag';
+import { Tag } from '../tag/Tag';
 import './home.css';
 import { SearchIcon } from '@primer/octicons-react'
 
-export const Home = ({ user}) => {
+export const Home = ({ user }) => {
 
     const [allNotes, setAllNotes] = useState([]);
     const [showNewNote, setShowNewNote] = useState(true)
@@ -15,11 +15,14 @@ export const Home = ({ user}) => {
     const [note, setNote] = useState({});
     const [showOldNote, setShowOldNote] = useState(false);
     const [tag, setTag] = useState(false);
-
-    // const updateNotes = (noteId) => {
-    //     setAllNotes(allNotes.filter((item) => item.id !== noteId))
-    //     console.log(noteId,'UPDATeNOTES::::::::')
-    // }
+    const dateNote = new Date();
+    const [newNote, setNewNote] = useState({
+        uid: user.uid,
+        date: dateNote,
+        label: '',
+        description: '',
+        image: '',
+    });
 
     const newNoteArea = () => {
         setShowNewNote(true)
@@ -66,13 +69,71 @@ export const Home = ({ user}) => {
         setTag(true)
     };
 
-    const deleteLabel = () => {
-        setTag(false)
+    const deleteNote = async () => {
+        const config = {
+            method: "DELETE",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+        };
+        await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${note.id}`, config)
+        getAllNotes()
+        setShowNewNote(true)
+        setShowOldNote(false)
     }
-    const showError =()=>{
-        setStateError(true)
-    }
-console.log(allNotes)
+
+    const editNote = async () => {
+        const config = {
+            method: "PUT",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+            body: JSON.stringify(note)
+        };
+        await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${note.id}`, config)
+        getAllNotes()
+        setShowNewNote(true)
+        setShowOldNote(false)
+    };
+
+    const addNotes = async () => {
+        if (newNote.description === '') {
+            setStateError(true)
+        } else {
+            const config = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newNote)
+            };
+            await fetch('https://639b6461d5141501975434d1.mockapi.io/notes', config);
+            setTag(false)
+            getAllNotes()
+            setShowNewNote(true)
+            setShowOldNote(false)
+            cancelNote()
+            setStateError(false)
+        }
+    };
+
+    const cancelNote = () => {
+        setNewNote({
+            uid: user.uid,
+            date: dateNote,
+            label: '',
+            description: '',
+            image: '',
+        });
+    };
+
+    const handleTextTareaChange = (e) => {
+        const { name, value } = e.target
+        setNewNote((prevState) => ({ ...prevState, [name]: value }))
+    };
+
+    const handleNote = (e) => {
+        const { name, value } = e.target
+        setNote((prevState) => ({ ...prevState, [name]: value }))
+    };
+
     return (
         <div className="home">
             <section className="searchAndCreateNote">
@@ -90,9 +151,19 @@ console.log(allNotes)
                             </button>
                         )};
                     </nav>
-
-                    <OneNote showError={showError} tag={tag} deleteLabel={deleteLabel} showLabel={showLabel} newNoteArea={newNoteArea} getAllNotes={getAllNotes} setNote={setNote} showNewNote={showNewNote} note={note} user={user} showOldNote={showOldNote} />
-                
+                    <div className='contentNote'>
+                        {showNewNote && <textarea name='description' value={newNote.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>}
+                        {showOldNote && <textarea name='description' value={note.description} onChange={handleNote} className="newNote" ></textarea>}
+                        {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
+                        {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
+                        <section className="menuButtonsNote">
+                            {showNewNote && <button onClick={() => addNotes()}>GUARDAR</button>}
+                            {showOldNote && <button onClick={() => editNote()}>GUARDARR</button>}
+                            <button onClick={() => showLabel()}>ETIQUETA</button>
+                            {showNewNote && <button onClick={() => cancelNote()}>BORRAR</button>}
+                            {showOldNote && <button onClick={() => deleteNote()}>ELIMINAR</button>}
+                        </section>
+                    </div>
                 </section>
             </section>
             <Exit user={user} stateError={stateError} />
