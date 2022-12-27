@@ -30,8 +30,7 @@ function App() {
           </Routes>
           :
           <Routes>
-            <Route path='/' element={<ShowMichi user={user} setLoading={setLoading} />} />
-            <Route path='/notes' element={<Home user={user} setLoading={setLoading} />} />
+            <Route path='/' element={<Home user={user} setLoading={setLoading} />} />
           </Routes>
         }
 

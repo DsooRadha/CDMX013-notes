@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Exit } from '../exit/Exit';
-import { SmallTag } from '../tag/SmallTag';
-import { Tag } from '../tag/Tag';
 import './home.css';
 import { SearchIcon } from '@primer/octicons-react'
-import { Images } from '../AddImage/Images';
-import ImageIcon from '@mui/icons-material/Image';
-import Image from '@mui/icons-material/Image';
-
+import { Notes } from '../Notes/Notes';
+import { ShowMichi } from '../MichiKaren/ShowMichi';
 
 export const Home = ({ user }) => {
 
@@ -16,24 +12,8 @@ export const Home = ({ user }) => {
     const [stateError, setStateError] = useState(false);
     const [inputSearch, setInputSearch] = useState('');
     const [searchAllNotes, setSearchAllNotes] = useState([]);
-    const [note, setNote] = useState({});
     const [showOldNote, setShowOldNote] = useState(false);
-    const [tag, setTag] = useState(false);
-    const [urlFiles, setUrlFiles]=useState('')
-    const dateNote = new Date();
-    const [newNote, setNewNote] = useState({
-        uid: user.uid,
-        date: dateNote,
-        label: '',
-        description: '',
-        image: urlFiles,
-    });
-    const [modalAddImages, setModalAddImages]=useState(false)
-
-    const newNoteArea = () => {
-        setShowNewNote(true)
-        setShowOldNote(false)
-    };
+    const [renderMichi, setRenderMichi]= useState(true)
 
     const getAllNotes = async () => {
         const config = {
@@ -64,88 +44,24 @@ export const Home = ({ user }) => {
         setAllNotes(resultSearch);
     };
 
-    const showNote = (item) => {
-        setNote(item);
+    const newNoteArea = () => {
+        setShowNewNote(true)
+        setShowOldNote(false)
+        setRenderMichi(false)
+    };
+    const changesTextArea = () => {
+        getAllNotes()
+        setShowNewNote(true)
+        setShowOldNote(false)
+    }
+    const viewOldNote =()=>{
         setShowNewNote(false)
         setShowOldNote(true)
-        item.label === '' ? setTag(false) : setTag(true)
-        setStateError(false)
-    }
-    const showLabel = () => {
-        setTag(true)
-    };
-
-    const deleteNote = async () => {
-        const config = {
-            method: "DELETE",
-            headers: { "Content-type": "application/json;charset=UTF-8" },
-        };
-        await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${note.id}`, config)
-        getAllNotes()
-        setShowNewNote(true)
-        setShowOldNote(false)
     }
 
-    const editNote = async () => {
-        const config = {
-            method: "PUT",
-            headers: { "Content-type": "application/json;charset=UTF-8" },
-            body: JSON.stringify(note)
-        };
-        await fetch(`https://639b6461d5141501975434d1.mockapi.io/notes/${note.id}`, config)
-        getAllNotes()
-        setShowNewNote(true)
-        setShowOldNote(false)
-    };
+   const hiddenError =()=>  setStateError(false) 
 
-    const addNotes = async () => {
-        if (newNote.description === '') {
-            setStateError(true)
-        } else {
-            const config = {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newNote)
-            };
-            await fetch('https://639b6461d5141501975434d1.mockapi.io/notes', config);
-            setTag(false)
-            getAllNotes()
-            setShowNewNote(true)
-            setShowOldNote(false)
-            cancelNote()
-            setStateError(false)
-        }
-    };
-
-    const cancelNote = () => {
-        setNewNote({
-            uid: user.uid,
-            date: dateNote,
-            label: '',
-            description: '',
-            image: '',
-        });
-    };
-
-    const handleTextTareaChange = (e) => {
-        const { name, value } = e.target
-        setNewNote((prevState) => ({ ...prevState, [name]: value }))
-    };
-
-    const handleNote = (e) => {
-        const { name, value } = e.target
-        setNote((prevState) => ({ ...prevState, [name]: value }))
-    };
-
-    const showModal=()=>{
-setModalAddImages(true)
-    }
-    const hiddenModal=()=>{
-        setModalAddImages(false)
-    }
+   const renderError =()=>  setStateError(true) 
 
     return (
         <div className="home">
@@ -155,31 +71,7 @@ setModalAddImages(true)
                     <input value={inputSearch} onChange={handleInput} className='search' placeholder="Busqueda..." type="text" />
                     <SearchIcon className='iconSearch' size={33} />
                 </div>
-                <section className="notes">
-                    <nav className='allNotesRender'>
-                        {allNotes.length > 0 && allNotes.map((item) =>
-                            <button onClick={() => showNote(item)} className='petitNotes' key={item.id}>
-                                <div className='textDescription'>{(item.description).slice(0, 14) + '...'}</div>
-                                {item.label !== '' && <SmallTag item={item} />}
-                            </button>
-                        )};
-                    </nav>
-                    <div className='contentNote'>
-                        {showNewNote && <textarea name='description' value={newNote.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>}
-                        {showOldNote && <textarea name='description' value={note.description} onChange={handleNote} className="newNote" ></textarea>}
-                        {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
-                        {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
-                        <section className="menuButtonsNote">
-                            {showNewNote && <button onClick={() => addNotes()}>GUARDAR</button>}
-                            {showOldNote && <button onClick={() => editNote()}>GUARDARR</button>}
-                            <button onClick={()=>showModal()} >IMAGENES</button>
-                            <button onClick={() => showLabel()}>ETIQUETA</button>
-                            {modalAddImages && <Images setUrlFiles={setUrlFiles} hiddenModal={hiddenModal}/>}
-                            {showNewNote && <button onClick={() => cancelNote()}>BORRAR</button>}
-                            {showOldNote && <button onClick={() => deleteNote()}>ELIMINAR</button>}
-                        </section>
-                    </div>
-                </section>
+                {allNotes.length === 0 && renderMichi ? <ShowMichi />:<Notes hiddenError={hiddenError} renderError={renderError} viewOldNote={viewOldNote} changesTextArea={changesTextArea} user={user} allNotes={allNotes} showNewNote={showNewNote} showOldNote={showOldNote} />}
             </section>
             <Exit user={user} stateError={stateError} />
         </div>
