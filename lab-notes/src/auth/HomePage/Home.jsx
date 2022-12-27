@@ -4,6 +4,10 @@ import { SmallTag } from '../tag/SmallTag';
 import { Tag } from '../tag/Tag';
 import './home.css';
 import { SearchIcon } from '@primer/octicons-react'
+import { Images } from '../AddImage/Images';
+import ImageIcon from '@mui/icons-material/Image';
+import Image from '@mui/icons-material/Image';
+
 
 export const Home = ({ user }) => {
 
@@ -15,14 +19,16 @@ export const Home = ({ user }) => {
     const [note, setNote] = useState({});
     const [showOldNote, setShowOldNote] = useState(false);
     const [tag, setTag] = useState(false);
+    const [urlFiles, setUrlFiles]=useState('')
     const dateNote = new Date();
     const [newNote, setNewNote] = useState({
         uid: user.uid,
         date: dateNote,
         label: '',
         description: '',
-        image: '',
+        image: urlFiles,
     });
+    const [modalAddImages, setModalAddImages]=useState(false)
 
     const newNoteArea = () => {
         setShowNewNote(true)
@@ -134,6 +140,13 @@ export const Home = ({ user }) => {
         setNote((prevState) => ({ ...prevState, [name]: value }))
     };
 
+    const showModal=()=>{
+setModalAddImages(true)
+    }
+    const hiddenModal=()=>{
+        setModalAddImages(false)
+    }
+
     return (
         <div className="home">
             <section className="searchAndCreateNote">
@@ -159,7 +172,9 @@ export const Home = ({ user }) => {
                         <section className="menuButtonsNote">
                             {showNewNote && <button onClick={() => addNotes()}>GUARDAR</button>}
                             {showOldNote && <button onClick={() => editNote()}>GUARDARR</button>}
+                            <button onClick={()=>showModal()} >IMAGENES</button>
                             <button onClick={() => showLabel()}>ETIQUETA</button>
+                            {modalAddImages && <Images setUrlFiles={setUrlFiles} hiddenModal={hiddenModal}/>}
                             {showNewNote && <button onClick={() => cancelNote()}>BORRAR</button>}
                             {showOldNote && <button onClick={() => deleteNote()}>ELIMINAR</button>}
                         </section>

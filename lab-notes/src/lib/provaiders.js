@@ -11,9 +11,6 @@ const auth = getAuth(app);
 export const registerWithGoogle = (setCatchProvaider) => signInWithPopup(auth, provider)
     .then(() => {
         setCatchProvaider(false)
-        // if(allNotes!== 0){
-        //     setHideMichi(true)
-        //  } 
     });
 
 export const registerGitHub = (setCatchProvaider) => signInWithPopup(auth, providerGitHub)
