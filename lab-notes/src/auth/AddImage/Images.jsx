@@ -1,23 +1,26 @@
 import { useState, useEffect } from 'react';
 import { uploadFile, storageRef } from '../../lib/storage';
-import { listAll, list, getDownloadURL } from "firebase/storage";
+import { listAll, getDownloadURL } from "firebase/storage";
+import './Images.css'
 
 
-export const Images = () => {
+export const Images = ({ setUrlFiles, hiddenModal }) => {
     const [file, setFile] = useState(null);
     const [images, setImages] = useState([]);
-    const [urlFiles, setUrlFiles]=useState('')
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        hiddenModal()
         try {
             const result = await uploadFile(file, setUrlFiles);
-          //  console.log(result)
+            //  console.log(result)
         } catch (error) {
-          ////  console.error(error)
+            ////  console.error(error)
         }
+    
     };
-console.log(urlFiles, 'aca')
+
     // useEffect(() => {
     //     listAll(storageRef).then((response) => {
     //         response.items.forEach((item) => {
@@ -28,14 +31,21 @@ console.log(urlFiles, 'aca')
     //     })
     // }, [])
 
-//console.log(images)
+    //console.log(images)
     return (
-        <form onSubmit={handleSubmit} className='inputFile'>
-            <input type='file' onChange={e => setFile(e.target.files[0])} />
-            <button>AGREGAR</button>
-            {/* {images.map((url)=>{
+        <section className="modal">
+            <div className="modalImage">
+                <form onSubmit={handleSubmit}>
+                    <input className='addFile' type='file' onChange={e => setFile(e.target.files[0])} />
+                    <div>
+                    <button id='btnAcept'>AGREGAR</button>
+                    <button onClick={()=>hiddenModal()} className='btnCancel'>CANCELAR</button>
+                    </div>
+                    {/* {images.map((url)=>{
                return <img src={url}/>
             })} */}
-        </form>
+                </form>
+            </div>
+        </section>
     )
 }

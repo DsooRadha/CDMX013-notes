@@ -24,8 +24,7 @@
     }
 
     .createNote,
-    .exit button,
-    .menuButtonsNote button {
+    .exit button,    .menuButtonsNote button {
         background-color: #AF3E25;
         color: rgb(255, 255, 255);
         font-size: 1.2em;
@@ -99,11 +98,12 @@
         width: 6vw;
         text-align: center;
     }
-    .menuButtonsNote {
-        display: flex;
-        flex-direction: row;
-    }
     
+    .menuButtonsNote button{
+        font-size: 1em;
+        width: 14vw;
+        margin: 0 1vh;
+    }
     .newNote {
         width: 43vw;
         border-radius: 2vh;
@@ -123,15 +123,14 @@
         justify-content: space-between;
     }
     
-    .menuButtonsNote button {
-        margin: 0 2vh;
-    }
     
     .menuButtonsNote {
         width: 20vw;
         position: absolute;
         bottom: 3vw;
-        left: 32.5vw;
+        left: 29.5vw;
+        display: flex;
+        flex-direction: row;
     }
     
     .inputFile{
