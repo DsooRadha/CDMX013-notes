@@ -134,5 +134,9 @@
         left: 32.5vw;
     }
     
+    .inputFile{
     
+       position: absolute;
+       font-size: 1em;
+    }
 }

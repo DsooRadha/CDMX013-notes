@@ -4,6 +4,8 @@ import { SmallTag } from '../tag/SmallTag';
 import { Tag } from '../tag/Tag';
 import './home.css';
 import { SearchIcon } from '@primer/octicons-react'
+import { Images } from '../AddImage/Images';
+
 
 export const Home = ({ user }) => {
 
@@ -23,6 +25,7 @@ export const Home = ({ user }) => {
         description: '',
         image: '',
     });
+   
 
     const newNoteArea = () => {
         setShowNewNote(true)
@@ -160,6 +163,7 @@ export const Home = ({ user }) => {
                             {showNewNote && <button onClick={() => addNotes()}>GUARDAR</button>}
                             {showOldNote && <button onClick={() => editNote()}>GUARDARR</button>}
                             <button onClick={() => showLabel()}>ETIQUETA</button>
+                         
                             {showNewNote && <button onClick={() => cancelNote()}>BORRAR</button>}
                             {showOldNote && <button onClick={() => deleteNote()}>ELIMINAR</button>}
                         </section>
