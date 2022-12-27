@@ -14,7 +14,7 @@ export const Images = ({ setUrlFiles, hiddenModal }) => {
         hiddenModal()
         try {
             const result = await uploadFile(file, setUrlFiles);
-            //  console.log(result)
+            setUrlFiles(result)
         } catch (error) {
             ////  console.error(error)
         }
@@ -31,7 +31,6 @@ export const Images = ({ setUrlFiles, hiddenModal }) => {
     //     })
     // }, [])
 
-    //console.log(images)
     return (
         <section className="modal">
             <div className="modalImage">

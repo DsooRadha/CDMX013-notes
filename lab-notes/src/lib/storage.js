@@ -11,13 +11,10 @@ export const storageRef = ref(storage, v4())
  * @returns {Promise<string>} url of the uploaded file
  */
 
-export const uploadFile = async (file,setUrlFiles) => {
-    //  const storageRef=ref(storage, `images/${v4()}`)
+export const uploadFile = async (file, ) => {
     await uploadBytes(storageRef, file)
     const url = await getDownloadURL(storageRef)
-    setUrlFiles(url)
-
-
+   
     // await listAll(storageRef)
     // .then((res) => {
     //   res.prefixes.forEach((folderRef) => {
@@ -29,7 +26,6 @@ export const uploadFile = async (file,setUrlFiles) => {
     // }).catch((error) => {
     //   console.log('Uh-oh, an error occurred!')
     // });
-
 
     return url
 };
