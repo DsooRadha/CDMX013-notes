@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import { SmallTag } from '../tag/SmallTag';
 import { Tag } from '../tag/Tag';
-import { Images } from '../Images/Images';
+import { ImageModal } from '../ImagesModal/ImageModal';
+import './notes.css'
 
 export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextArea, viewOldNote, renderError, hiddenError }) => {
+
     const [tag, setTag] = useState(false);
-    const [urlFiles, setUrlFiles] = useState('')
+    const [modalAddImages, setModalAddImages] = useState(false)
+    const [urlFiles, setUrlFiles] = useState([]);
     const dateNote = new Date();
     const [newNote, setNewNote] = useState({
         uid: user.uid,
         date: dateNote,
         label: '',
         description: '',
-        image: urlFiles,
     });
-    const [modalAddImages, setModalAddImages] = useState(false)
     const [note, setNote] = useState({});
+    const [active, setActive] = useState(false);
+
 
     const showNote = (item) => {
         setNote(item);
@@ -46,8 +49,10 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
     };
 
     const addNotes = async () => {
+
+
         if (newNote.description === '') {
-           renderError()
+            renderError()
         } else {
             const config = {
                 method: 'POST',
@@ -71,7 +76,7 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
             date: dateNote,
             label: '',
             description: '',
-            image: '',
+            image: [],
         });
         setTag(false)
     };
@@ -88,38 +93,39 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
         setNote((prevState) => ({ ...prevState, [name]: value }))
     };
 
-    const showModal = () => {
-        setModalAddImages(true)
-    };
+    const hiddenModal = () => setModalAddImages(false)
+    const showModal = () => setModalAddImages(true)
 
-    const hiddenModal = () => {
-        setModalAddImages(false)
-    };
+    const changesColorTextArea = () => {
+        setActive(!active);
+    }
 
     return (
         <section className="notes">
-            <nav className='allNotesRender'>
-                {allNotes.length > 0 && allNotes.map((item) =>
+            <aside className='allNotesRender'>
+                {allNotes.length !== 0 && allNotes.map((item) =>
                     <button onClick={() => showNote(item)} className='petitNotes' key={item.id}>
-                        <div className='textDescription'>{(item.description).slice(0, 14) + '...'}</div>
+                        <div className='textDescription'>{(item.description !== '') && (item.description).slice(0, 14) + '...'}</div>
                         {item.label !== '' && <SmallTag item={item} />}
                     </button>
                 )};
-            </nav>
+            </aside>
             <div className='contentNote'>
-                {showNewNote && <textarea name='description' value={newNote.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"></textarea>}
+                {showNewNote && <textarea name='description' value={newNote.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"
+                    style={{ backgroundColor: !active ? "#D9D9D9" : 'rgb(157, 157, 240)' }}></textarea>}
                 {showOldNote && <textarea name='description' value={note.description} onChange={handleNote} className="newNote" ></textarea>}
                 {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
                 {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
-                <section className="menuButtonsNote">
+                <nav className="menuButtonsNote">
                     {showNewNote && <button onClick={() => addNotes()}>GUARDAR</button>}
                     {showOldNote && <button onClick={() => editNote()}>GUARDARR</button>}
                     <button onClick={() => showModal()} >IMAGENES</button>
                     <button onClick={() => showLabel()}>ETIQUETA</button>
-                    {modalAddImages && <Images setUrlFiles={setUrlFiles} hiddenModal={hiddenModal} />}
+                    <button onClick={() => changesColorTextArea()}>COLOR</button>
                     {showNewNote && <button onClick={() => cancelNote()}>BORRAR</button>}
                     {showOldNote && <button onClick={() => deleteNote()}>ELIMINAR</button>}
-                </section>
+                </nav>
+                {modalAddImages && <ImageModal setUrlFiles={setUrlFiles} hiddenModal={hiddenModal} />}
             </div>
         </section>
     )

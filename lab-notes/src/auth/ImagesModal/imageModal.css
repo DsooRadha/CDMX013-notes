@@ -22,16 +22,24 @@
     align-items: center;
 }
 
-#btnAcept {
+#btnAcept, #btnCancel {
     background-color: #073639;
     margin: 3vh;
+    color: #D9D9D9;
+    padding: 1.5vw;
+    border-radius: 2vh;
+    border:none;
+    font-size: 1em;
+    width:14vw;
 }
 
-.btnCancel {
+#btnCancel {
     background-color: #AF3E25;
-    margin: 3vh;
 }
 
 .addFile {
     font-size: 1.2em;
+}
+.btnsModal{
+    display:flex;
 }

@@ -1,24 +1,18 @@
 import { useState, useEffect } from 'react';
 import { uploadFile, storageRef } from '../../lib/storage';
 import { listAll, getDownloadURL } from "firebase/storage";
-import './Images.css'
+import './imageModal.css'
 
-
-export const Images = ({ setUrlFiles, hiddenModal }) => {
+export const ImageModal = ({ setUrlFiles, hiddenModal }) => {
     const [file, setFile] = useState(null);
-    const [images, setImages] = useState([]);
-
+    // const [images, setImages] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         hiddenModal()
-        try {
-            const result = await uploadFile(file, setUrlFiles);
-            setUrlFiles(result)
-        } catch (error) {
-            ////  console.error(error)
-        }
-    
+        const result = await uploadFile(file);
+        await setUrlFiles((prevState) => [...prevState, result])
+        // console.log(result,':::::::')
     };
 
     // useEffect(() => {
@@ -36,13 +30,10 @@ export const Images = ({ setUrlFiles, hiddenModal }) => {
             <div className="modalImage">
                 <form onSubmit={handleSubmit}>
                     <input className='addFile' type='file' onChange={e => setFile(e.target.files[0])} />
-                    <div>
-                    <button id='btnAcept'>AGREGAR</button>
-                    <button onClick={()=>hiddenModal()} className='btnCancel'>CANCELAR</button>
+                    <div className='btnsModal'>
+                        <input type="submit" value="ACEPTAR" id='btnAcept' />
+                        <button onClick={() => hiddenModal()} id='btnCancel'>CANCELAR</button>
                     </div>
-                    {/* {images.map((url)=>{
-               return <img src={url}/>
-            })} */}
                 </form>
             </div>
         </section>
