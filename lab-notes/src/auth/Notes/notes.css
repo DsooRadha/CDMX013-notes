@@ -23,12 +23,17 @@
     display: flex;
     flex-direction: row;
 }
+
 .allNotesRender {
     height: 81vh;
     border-radius: 1vh;
     width: 36vw;
     margin: 1vh 2vh;
     overflow: scroll;
+}
+
+.petitNotes:nth-child(even){
+    background-color: #A8A8A8;
 }
 
 .petitNotes {
@@ -44,11 +49,12 @@
     border: none;
     text-align: left;
 }
+
 .petitTagLabel {
     width: 11vh;
     height: 5vh;
     position: absolute;
-   top: -2.5vh;
+    top: -2.5vh;
 }
 
 .labelNotes p {
@@ -56,12 +62,12 @@
     z-index: 1;
     top: -2.1vh;
     font-size: 0.5em;
-    left:  2.3vh;
+    left: 2.3vh;
     width: 6vw;
     text-align: center;
 }
 
-.menuButtonsNote button{
+.menuButtonsNote button {
     font-size: 1em;
     width: 14vw;
     margin: 0 1vh;
@@ -73,8 +79,27 @@
     flex-direction: row;
 }
 
-.inputFile{
-   position: absolute;
-   font-size: 1em;
+.inputFile {
+    position: absolute;
+    font-size: 1em;
 }
 
+.menuTypography:hover {
+    background-color: #1d052cac;
+    color: white;
+}
+
+.menuTypography {
+    border: none;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    background-color: #180757cc;
+    width: 19.55vw;
+    height: 7vh;
+    font-size: 1.2vw;
+    font-family: 'Nanum Gothic';
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+}

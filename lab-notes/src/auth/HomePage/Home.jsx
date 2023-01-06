@@ -4,6 +4,7 @@ import './home.css';
 import { SearchIcon, PlusCircleIcon } from '@primer/octicons-react'
 import { Notes } from '../Notes/Notes';
 import { ShowMichi } from '../MichiKaren/ShowMichi';
+import {AiOutlinePlus } from "react-icons/ai"
 
 
 export const Home = ({ user }) => {
@@ -68,7 +69,7 @@ export const Home = ({ user }) => {
         <div className="home">
             <section className="searchAndCreateNote">
                 <div className="buttonAndSearch">
-                    <button className='createNote' onClick={() => { newNoteArea() }}>CREAR NOTA <PlusCircleIcon size={22} /></button>
+                    <button className='createNote' onClick={() => { newNoteArea() }}>CREAR NOTA <AiOutlinePlus size={18} /></button>
                     <input value={inputSearch} onChange={handleInput} className='search' placeholder="Busqueda..." type="text" />
                     <SearchIcon className='iconSearch' size={33} />
                 </div>

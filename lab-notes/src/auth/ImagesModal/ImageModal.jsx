@@ -3,7 +3,7 @@ import { uploadFile, storageRef } from '../../lib/storage';
 import { listAll, getDownloadURL } from "firebase/storage";
 import './imageModal.css'
 
-export const ImageModal = ({ setUrlFiles, hiddenModal }) => {
+export const ImageModal = ({ setUrlFiles, urlFiles, hiddenModal }) => {
     const [file, setFile] = useState(null);
     // const [images, setImages] = useState([]);
 
@@ -11,8 +11,8 @@ export const ImageModal = ({ setUrlFiles, hiddenModal }) => {
         e.preventDefault();
         hiddenModal()
         const result = await uploadFile(file);
-        await setUrlFiles((prevState) => [...prevState, result])
-        // console.log(result,':::::::')
+        setUrlFiles([...urlFiles, result])
+        console.log(result,':::::::imageModal')
     };
 
     // useEffect(() => {
