@@ -3,6 +3,7 @@ import { SmallTag } from '../tag/SmallTag';
 import { Tag } from '../tag/Tag';
 import { ImageModal } from '../ImagesModal/ImageModal';
 import './notes.css'
+import { ImageIcon, TagIcon, TrashIcon, XCircleFillIcon , PaintbrushIcon} from '@primer/octicons-react'
 
 export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextArea, viewOldNote, renderError, hiddenError }) => {
 
@@ -100,6 +101,8 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
         setActive(!active);
     }
 
+
+
     return (
         <section className="notes">
             <aside className='allNotesRender'>
@@ -117,13 +120,13 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
                 {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
                 {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
                 <nav className="menuButtonsNote">
-                    {showNewNote && <button onClick={() => addNotes()}>GUARDAR</button>}
-                    {showOldNote && <button onClick={() => editNote()}>GUARDARR</button>}
-                    <button onClick={() => showModal()} >IMAGENES</button>
-                    <button onClick={() => showLabel()}>ETIQUETA</button>
-                    <button onClick={() => changesColorTextArea()}>COLOR</button>
-                    {showNewNote && <button onClick={() => cancelNote()}>BORRAR</button>}
-                    {showOldNote && <button onClick={() => deleteNote()}>ELIMINAR</button>}
+                    {showNewNote && <button title='SaveNotes' onClick={() => addNotes()}>GUARDAR</button>}
+                    {showOldNote && <button title='SaveNotes' onClick={() => editNote()}>GUARDAR</button>}
+                    <button  title='AddFiles' onClick={() => showModal()}> <ImageIcon size={20} /></button> 
+                    <button title='AddLabel' onClick={() => showLabel()}><TagIcon size={20} /></button>
+                    <button title='Changes color note' onClick={() => changesColorTextArea()}><PaintbrushIcon size={20} /></button>
+                    {showNewNote && <button title='Clean Note' onClick={() => cancelNote()}>LIMPIAR</button>}
+                    {showOldNote && <button title='DeleteNote'onClick={() => deleteNote()}><TrashIcon size={20} /></button>}
                 </nav>
                 {modalAddImages && <ImageModal setUrlFiles={setUrlFiles} hiddenModal={hiddenModal} />}
             </div>
