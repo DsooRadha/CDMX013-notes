@@ -104,14 +104,22 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
 
     const changesTypography = () => {
         setTypography(!typography)
-        if (typography=== false){
-            console.log('aca');
-          return  setNewNote((prevState) => ({ ...prevState, typography: 'italic' }))
-            
+        if (typography === false) {
+            return setNewNote((prevState) => ({ ...prevState, typography: 'italic' }))
+
         }
-       return setNewNote((prevState) => ({ ...prevState, typography: 'normal' }))
+        return setNewNote((prevState) => ({ ...prevState, typography: 'normal' }))
     }
-    
+
+    const changesOldNoteTypography = () => {
+        setTypography(!typography)
+        if (typography === false) {
+            return setNote((prevState) => ({ ...prevState, typography: 'italic' }))
+
+        }
+        return setNote((prevState) => ({ ...prevState, typography: 'normal' }))
+    }
+
     return (
         <section className="notes">
             <aside className='allNotesRender'>
@@ -139,7 +147,8 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
                     <button title='AddFiles' onClick={() => showModal()}> <ImageIcon size={27} /></button>
                     <button title='AddLabel' onClick={() => showLabel()}><TagIcon size={27} /></button>
                     <button title='Changes color note' onClick={() => changesColorTextArea()}><PaintbrushIcon size={25} /></button>
-                    <button className='boldTypography' onClick={() => changesTypography()}> <AiOutlineFontSize size={27} /></button>
+                    {showNewNote && <button className='italicTypography' onClick={() => changesTypography()}> <AiOutlineFontSize size={27} /></button>}
+                    {showOldNote && <button className='italicTypography' onClick={() => changesOldNoteTypography()}> <AiOutlineFontSize size={27} /></button>}
                 </nav>
                 {modalAddImages && <ImageModal urlFiles={urlFiles} setUrlFiles={setUrlFiles} hiddenModal={hiddenModal} />}
                 {urlFiles.length !== 0 && urlFiles.map((item) => {
