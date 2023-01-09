@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SmallTag } from '../tag/SmallTag';
 import { Tag } from '../tag/Tag';
 import { ImageModal } from '../ImagesModal/ImageModal';
@@ -57,14 +57,14 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
         if (newNote.description === '') {
             renderError()
         } else {
-            console.log(urlFiles,'::::dentro de addNotes')
+
             const config = {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({...newNote, images:urlFiles})
+                body: JSON.stringify({ ...newNote, images: urlFiles })
             };
             await fetch('https://639b6461d5141501975434d1.mockapi.io/notes', config);
             setTag(false)
@@ -106,9 +106,11 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
         setNewNote((prevState) => ({ ...prevState, typography: 'italic' }))
         setTypography(!typography)
     }
+    // useEffect(() => {
+    //     setUrlFiles()
+    //   }, []);
 
-  
-    
+    console.log(urlFiles, '::::fuera de addNotes')
     return (
         <section className="notes">
             <aside className='allNotesRender'>
@@ -126,16 +128,25 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
                 {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
                 {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
                 <nav className="menuButtonsNote">
-                    {showNewNote && <button title='SaveNotes' onClick={() => addNotes()}>GUARDAR <AiTwotoneSave size={20} /></button>}
+                    {showNewNote && <button title='SaveNotes' onClick={() => addNotes()}>GUARDAR </button>}
                     {showOldNote && <button title='SaveNotes' onClick={() => editNote()}>GUARDAR<AiOutlineSave size={20} /></button>}
-                    <button title='AddFiles' onClick={() => showModal()}> <ImageIcon size={20} /></button>
-                    <button title='AddLabel' onClick={() => showLabel()}><TagIcon size={20} /></button>
-                    <button title='Changes color note' onClick={() => changesColorTextArea()}><PaintbrushIcon size={20} /></button>
-                    {showNewNote && <button title='Clean Note' onClick={() => cancelNote()}> <AiOutlineClear size={20} /></button>}
+                    {showNewNote && <button title='Clean Note' onClick={() => cancelNote()}>BORRAR <AiOutlineClear size={22} /></button>}
                     {showOldNote && <button title='DeleteNote' onClick={() => deleteNote()}>ELIMINAR<TrashIcon size={20} /></button>}
-                    <button className='boldTypography' onClick={() => changesTypography()}> <AiOutlineFontSize size={20} /></button>
+                </nav>
+                <nav className='menuButtonsSecondary'>
+                    <button title='AddFiles' onClick={() => showModal()}> <ImageIcon size={27} /></button>
+                    <button title='AddLabel' onClick={() => showLabel()}><TagIcon size={27} /></button>
+                    <button title='Changes color note' onClick={() => changesColorTextArea()}><PaintbrushIcon size={25} /></button>
+
+                    <button className='boldTypography' onClick={() => changesTypography()}> <AiOutlineFontSize size={27} /></button>
                 </nav>
                 {modalAddImages && <ImageModal urlFiles={urlFiles} setUrlFiles={setUrlFiles} hiddenModal={hiddenModal} />}
+                {urlFiles.length !== 0 && urlFiles.map((item) => {
+                    <div className='experiment'>
+                        <img src={item} />
+                        <p>item</p>
+                    </div>
+                })}
             </div>
         </section >
     )

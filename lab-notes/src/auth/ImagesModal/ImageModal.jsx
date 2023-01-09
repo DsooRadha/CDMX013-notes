@@ -12,7 +12,7 @@ export const ImageModal = ({ setUrlFiles, urlFiles, hiddenModal }) => {
         hiddenModal()
         const result = await uploadFile(file);
         setUrlFiles([...urlFiles, result])
-        console.log(result,':::::::imageModal')
+        // console.log(result,':::::::imageModal')
     };
 
     // useEffect(() => {

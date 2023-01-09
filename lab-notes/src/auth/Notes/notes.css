@@ -16,12 +16,13 @@
 }
 
 .menuButtonsNote {
-    width: 20vw;
     position: absolute;
     bottom: 3vw;
     left: 29.5vw;
     display: flex;
     flex-direction: row;
+    width: 45vw;
+    justify-content: center;
 }
 
 .allNotesRender {
@@ -32,7 +33,7 @@
     overflow: scroll;
 }
 
-.petitNotes:nth-child(even){
+.petitNotes:nth-child(even) {
     background-color: #A8A8A8;
 }
 
@@ -68,9 +69,9 @@
 }
 
 .menuButtonsNote button {
-    font-size: 1em;
-    width: 14vw;
-    margin: 0 1vh;
+    font-size: 1.4em;
+    /* width: 14vw; */
+    margin: 0 3.3vh;
 }
 
 .contentNote {
@@ -102,4 +103,25 @@
     align-items: center;
     flex-grow: 1;
     flex-wrap: nowrap;
+}
+
+.menuButtonsSecondary {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 8vw;
+    bottom: 31vh;
+    right: 18.5vw;
+}
+
+.menuButtonsSecondary button {
+    background-color: #AF3E25;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    padding: 1.2vw;
+    border-radius: 2vh;
+    border: none;
+    width: 6vw;
+    justify-items: center;
+    margin: 0.3vh;
 }

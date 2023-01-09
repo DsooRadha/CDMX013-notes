@@ -1,6 +1,3 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
-import { Exit } from '../exit/Exit'
 import './showMichi.css'
 
 export const ShowMichi = ( ) => {
