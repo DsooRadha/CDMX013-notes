@@ -8,7 +8,7 @@
 }
 
 .exit .logo img {
-    width: 11vw;
+    width: 10vw;
 }
 
 .exit button {
@@ -42,4 +42,14 @@
     font-size: 1.5em;
     width: 15vw;
     padding: 2vh;
+}
+
+.imageNotes{
+    background-color: rgb(140, 139, 139);
+    width:15vw;
+    height: 50vh;
+    border-radius: 1vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
 }

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Exit } from '../exit/Exit';
 import './home.css';
-import { SearchIcon } from '@primer/octicons-react'
+import { SearchIcon, PlusCircleIcon } from '@primer/octicons-react'
 import { Notes } from '../Notes/Notes';
 import { ShowMichi } from '../MichiKaren/ShowMichi';
+import {AiOutlinePlus } from "react-icons/ai"
+
 
 export const Home = ({ user }) => {
 
@@ -14,7 +16,7 @@ export const Home = ({ user }) => {
     const [searchAllNotes, setSearchAllNotes] = useState([]);
     const [showOldNote, setShowOldNote] = useState(false);
     const [renderMichi, setRenderMichi]= useState(true)
-
+   
     const getAllNotes = async () => {
         const config = {
             method: "GET",
@@ -67,12 +69,15 @@ export const Home = ({ user }) => {
         <div className="home">
             <section className="searchAndCreateNote">
                 <div className="buttonAndSearch">
-                    <button className='createNote' onClick={() => { newNoteArea() }}>CREAR NOTA   +</button>
+                    <button className='createNote' onClick={() => { newNoteArea() }}>CREAR NOTA <AiOutlinePlus size={18} /></button>
                     <input value={inputSearch} onChange={handleInput} className='search' placeholder="Busqueda..." type="text" />
                     <SearchIcon className='iconSearch' size={33} />
                 </div>
-                {allNotes.length === 0 && renderMichi ? <ShowMichi />:<Notes hiddenError={hiddenError} renderError={renderError} viewOldNote={viewOldNote} changesTextArea={changesTextArea} user={user} allNotes={allNotes} showNewNote={showNewNote} showOldNote={showOldNote} />}
+                {allNotes.length === 0 && renderMichi ? <ShowMichi />:<Notes  hiddenError={hiddenError} renderError={renderError} 
+                viewOldNote={viewOldNote} changesTextArea={changesTextArea} user={user} allNotes={allNotes} showNewNote={showNewNote} 
+                showOldNote={showOldNote} />}
             </section>
+          
             <Exit user={user} stateError={stateError} />
         </div>
     )

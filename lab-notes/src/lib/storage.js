@@ -1,10 +1,11 @@
 import { getStorage } from "firebase/storage";
 import { app } from "./firebase";
-import { ref, uploadBytes, getDownloadURL, listAll, list, } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
 import { v4 } from "uuid";
 
 export const storage = getStorage(app);
 export const storageRef = ref(storage, v4())
+
 /**
  * Upload a file to firebase Storage
  * @param {File} file the file to upload
