@@ -109,16 +109,15 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
 
         }
         return setNewNote((prevState) => ({ ...prevState, typography: 'normal' }))
-    }
+    };
 
     const changesOldNoteTypography = () => {
         setTypography(!typography)
         if (typography === false) {
             return setNote((prevState) => ({ ...prevState, typography: 'italic' }))
-
         }
         return setNote((prevState) => ({ ...prevState, typography: 'normal' }))
-    }
+    };
 
     return (
         <section className="notes">
