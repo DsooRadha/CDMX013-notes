@@ -103,14 +103,15 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
     const changesColorTextArea = () => setActive(!active);
 
     const changesTypography = () => {
-        setNewNote((prevState) => ({ ...prevState, typography: 'italic' }))
         setTypography(!typography)
+        if (typography=== false){
+            console.log('aca');
+          return  setNewNote((prevState) => ({ ...prevState, typography: 'italic' }))
+            
+        }
+       return setNewNote((prevState) => ({ ...prevState, typography: 'normal' }))
     }
-    // useEffect(() => {
-    //     setUrlFiles()
-    //   }, []);
-
-    console.log(urlFiles, '::::fuera de addNotes')
+    
     return (
         <section className="notes">
             <aside className='allNotesRender'>
@@ -123,21 +124,21 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
             </aside>
             <div className='contentNote'>
                 {showNewNote && <textarea name='description' value={newNote.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"
-                    style={{ backgroundColor: !active ? "#D9D9D9" : 'rgb(157, 157, 240)', fontStyle: typography ? 'italic' : null }} ></textarea>}
-                {showOldNote && <textarea name='description' value={note.description} onChange={handleNote} className="newNote" ></textarea>}
-                {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
-                {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
+                    style={{ backgroundColor: active ? "#696969" : null, fontStyle: typography ? 'italic' : null }} ></textarea>}
+                {showOldNote && <textarea name='description' value={note.description} onChange={handleNote} className="newNote"
+                    style={{ fontStyle: note.typography === 'italic' || typography ? 'italic' : null }} ></textarea>}
+                {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} value={newNote.label} />}
+                {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.label} />}
                 <nav className="menuButtonsNote">
                     {showNewNote && <button title='SaveNotes' onClick={() => addNotes()}>GUARDAR </button>}
-                    {showOldNote && <button title='SaveNotes' onClick={() => editNote()}>GUARDAR<AiOutlineSave size={20} /></button>}
+                    {showOldNote && <button title='SaveNotes' onClick={() => editNote()}>GUARDAR</button>}
                     {showNewNote && <button title='Clean Note' onClick={() => cancelNote()}>BORRAR <AiOutlineClear size={22} /></button>}
-                    {showOldNote && <button title='DeleteNote' onClick={() => deleteNote()}>ELIMINAR<TrashIcon size={20} /></button>}
+                    {showOldNote && <button title='DeleteNote' onClick={() => deleteNote()}>ELIMINAR<TrashIcon size={22} /></button>}
                 </nav>
                 <nav className='menuButtonsSecondary'>
                     <button title='AddFiles' onClick={() => showModal()}> <ImageIcon size={27} /></button>
                     <button title='AddLabel' onClick={() => showLabel()}><TagIcon size={27} /></button>
                     <button title='Changes color note' onClick={() => changesColorTextArea()}><PaintbrushIcon size={25} /></button>
-
                     <button className='boldTypography' onClick={() => changesTypography()}> <AiOutlineFontSize size={27} /></button>
                 </nav>
                 {modalAddImages && <ImageModal urlFiles={urlFiles} setUrlFiles={setUrlFiles} hiddenModal={hiddenModal} />}
