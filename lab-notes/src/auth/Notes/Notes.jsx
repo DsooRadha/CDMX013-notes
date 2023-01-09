@@ -104,17 +104,14 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
 
     const changesTypography = () => {
         setTypography(!typography)
-        if (typography){
-            setNewNote((prevState) => ({ ...prevState, typography: 'italic' }))
+        if (typography=== false){
+            console.log('aca');
+          return  setNewNote((prevState) => ({ ...prevState, typography: 'italic' }))
+            
         }
-        setNewNote((prevState) => ({ ...prevState, typography: 'normal' }))
-        
+       return setNewNote((prevState) => ({ ...prevState, typography: 'normal' }))
     }
-    // useEffect(() => {
-    //     setUrlFiles()
-    //   }, []);
-
-    console.log(urlFiles, '::::fuera de addNotes')
+    
     return (
         <section className="notes">
             <aside className='allNotesRender'>
@@ -127,11 +124,11 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
             </aside>
             <div className='contentNote'>
                 {showNewNote && <textarea name='description' value={newNote.description} onChange={handleTextTareaChange} className="newNote" placeholder="Escribe tu nota...                    (=^･ｪ･^=)"
-                    style={{ backgroundColor: !active ? "#D9D9D9" : 'rgb(157, 157, 240)', fontStyle: typography ? 'italic' : null }} ></textarea>}
+                    style={{ backgroundColor: active ? "#696969" : null, fontStyle: typography ? 'italic' : null }} ></textarea>}
                 {showOldNote && <textarea name='description' value={note.description} onChange={handleNote} className="newNote"
-                style={{fontStyle: note.typography==='italic' ? 'italic' : null }} ></textarea>}
-                {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} />}
-                {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.description} />}
+                    style={{ fontStyle: note.typography === 'italic' || typography ? 'italic' : null }} ></textarea>}
+                {tag && showNewNote && <Tag note={note} handleTextTareaChange={handleTextTareaChange} value={newNote.label} />}
+                {showOldNote && tag && <Tag note={note} handleTextTareaChange={handleNote} value={note.label} />}
                 <nav className="menuButtonsNote">
                     {showNewNote && <button title='SaveNotes' onClick={() => addNotes()}>GUARDAR </button>}
                     {showOldNote && <button title='SaveNotes' onClick={() => editNote()}>GUARDAR</button>}
