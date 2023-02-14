@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SmallTag } from '../tag/SmallTag';
 import { Tag } from '../tag/Tag';
 import { ImageModal } from '../ImagesModal/ImageModal';
 import './notes.css'
 import { ImageIcon, TagIcon, TrashIcon, PaintbrushIcon } from '@primer/octicons-react'
-import { AiOutlineFontSize, AiOutlineSave, AiTwotoneSave, AiOutlineClear } from "react-icons/ai"
+import { AiOutlineFontSize, AiOutlineClear } from "react-icons/ai"
 
 export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextArea, viewOldNote, renderError, hiddenError }) => {
 
@@ -124,8 +124,8 @@ export const Notes = ({ allNotes, user, showNewNote, showOldNote, changesTextAre
             <aside className='allNotesRender'>
                 {allNotes.length !== 0 && allNotes.map((item) =>
                     <button onClick={() => showNote(item)} className='petitNotes' key={item.id}>
-                        <div className='textDescription' style={{ fontStyle: item.typography !== 'normal' ? 'italic' : null }}>{(item.description !== '') && (item.description).slice(0, 14) + '...'}</div>
-                        {item.label !== '' && <SmallTag item={item} />}
+                        <div className='textDescription' style={{ fontStyle: item.typography !== 'normal' ? 'italic' : null }}>{(item.description !== '') && (item.description).slice(0, 14) + '...'}
+                        {item.label !== '' && <SmallTag item={item} />}</div>
                     </button>
                 )};
             </aside>

@@ -30,7 +30,7 @@
     border-radius: 1vh;
     width: 36vw;
     margin: 1vh 2vh;
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 .petitNotes:nth-child(even) {
@@ -49,21 +49,24 @@
     font-size: 1.1em;
     border: none;
     text-align: left;
+    width: 24vw;
+    
 }
 
 .petitTagLabel {
-    width: 11vh;
+    width: 10vh;
     height: 5vh;
     position: absolute;
-    top: -2.5vh;
+    top: -4vh;
+    left: 23vh;
 }
 
 .labelNotes p {
     position: absolute;
     z-index: 1;
-    top: -2.1vh;
+    top: -3.5vh;
     font-size: 0.5em;
-    left: 2.3vh;
+    left: 24.3vh;
     width: 6vw;
     text-align: center;
 }
