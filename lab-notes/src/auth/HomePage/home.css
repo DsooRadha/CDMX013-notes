@@ -24,8 +24,7 @@
     }
 
     .createNote,
-    .exit button,
-    .menuButtonsNote button {
+    .exit button,    .menuButtonsNote button {
         background-color: #AF3E25;
         color: rgb(255, 255, 255);
         font-size: 1.2em;
@@ -38,19 +37,25 @@
         position: absolute;
     }
 
-    .searchAndCreateNote button {
+    .createNote {
         width: 24vw;
-    }
-
-    .notes {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
     }
 
     .iconSearch {
         position: absolute;
         right: 24vw;
-     opacity: 0.4;
+        opacity: 0.4;
     }
+
+    .textDescription {
+        width: 21vw;
+    }
+
+    .labelNotes {
+        width: 9.5vw;
+        position: relative;
+   
+    }
+
+ 
 }

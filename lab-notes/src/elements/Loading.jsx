@@ -1,6 +1,6 @@
 
 import './loading.css'
-import { Logo } from './Logo'
+// import { Logo } from './Logo'
 
 export const Loading = () => {
     return (

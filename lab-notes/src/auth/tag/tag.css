@@ -1,0 +1,20 @@
+.tagLabel {
+    position: absolute;
+    width: 17vw;
+    top: 22vh;
+    right: 9vw;
+    height: 13vh;
+}
+
+.labelCat {
+    position: absolute;
+    width: 14vw;
+    top: 26vh;
+    right: 9vw;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 1vh;
+    color: aliceblue;
+    z-index: 1;
+}
